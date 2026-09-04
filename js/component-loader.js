@@ -3,9 +3,13 @@
    COMPONENT LOADER
    Navbar + Footer + Floating Components
 
-   Stable Loading
-   No Navbar Flash
-   No Duplicate Initialization
+   PREMIUM / STABLE LOADING
+   ---------------------------------------------------------
+   - Prevents component flash
+   - Prevents navbar flash
+   - Prevents duplicate initialization
+   - Controlled page reveal
+   - Keeps active navigation stable
 ========================================================= */
 
 (async function () {
@@ -25,6 +29,65 @@
 
 
     /* =====================================================
+       PREVENT DUPLICATE LOADER
+    ===================================================== */
+
+    if (window.__GRID_COMPONENT_LOADER_INITIALIZED__) {
+        return;
+    }
+
+    window.__GRID_COMPONENT_LOADER_INITIALIZED__ = true;
+
+
+    /* =====================================================
+       PREVENT PAGE FLASH
+       -----------------------------------------------------
+       Inject immediately before component loading.
+    ===================================================== */
+
+    function installPreloadState() {
+
+        if (
+            document.getElementById(
+                "grid-component-preload-style"
+            )
+        ) {
+            return;
+        }
+
+
+        const style =
+            document.createElement("style");
+
+        style.id =
+            "grid-component-preload-style";
+
+
+        style.textContent = `
+
+            html:not(.grid-components-ready) body {
+                visibility: hidden;
+                opacity: 0;
+            }
+
+            html.grid-components-ready body {
+                visibility: visible;
+                opacity: 1;
+                transition: opacity .16s ease;
+            }
+
+        `;
+
+
+        document.head.appendChild(style);
+
+    }
+
+
+    installPreloadState();
+
+
+    /* =====================================================
        LOAD CSS ONCE
     ===================================================== */
 
@@ -40,12 +103,35 @@
 
             if (existing) {
 
-                /*
-                 * If stylesheet already exists,
-                 * continue immediately.
-                 */
+                if (
+                    existing.sheet
+                ) {
 
-                resolve();
+                    resolve();
+
+                    return;
+
+                }
+
+
+                existing.addEventListener(
+                    "load",
+                    resolve,
+                    {
+                        once: true
+                    }
+                );
+
+
+                existing.addEventListener(
+                    "error",
+                    reject,
+                    {
+                        once: true
+                    }
+                );
+
+
                 return;
 
             }
@@ -108,7 +194,35 @@
 
             if (existing) {
 
-                resolve();
+                if (
+                    existing.dataset.loaded === "true"
+                ) {
+
+                    resolve();
+
+                    return;
+
+                }
+
+
+                existing.addEventListener(
+                    "load",
+                    resolve,
+                    {
+                        once: true
+                    }
+                );
+
+
+                existing.addEventListener(
+                    "error",
+                    reject,
+                    {
+                        once: true
+                    }
+                );
+
+
                 return;
 
             }
@@ -126,6 +240,8 @@
 
 
             script.onload = function () {
+
+                script.dataset.loaded = "true";
 
                 resolve();
 
@@ -185,7 +301,7 @@
                 await fetch(
                     file,
                     {
-                        cache: "no-cache"
+                        cache: "default"
                     }
                 );
 
@@ -238,9 +354,7 @@
 
 
         if (!currentPage) {
-
             currentPage = "index.html";
-
         }
 
 
@@ -254,10 +368,7 @@
             )
             .forEach(function (item) {
 
-                item.classList.remove(
-                    "active"
-                );
-
+                item.classList.remove("active");
 
                 item.removeAttribute(
                     "aria-current"
@@ -281,12 +392,30 @@
                 );
 
 
+            /*
+             * Respect GET A QUOTE source.
+             */
+
+            const source =
+                sessionStorage.getItem(
+                    "gridNavbarActiveSource"
+                );
+
+
+            if (
+                source === "quote"
+            ) {
+
+                return;
+
+            }
+
+
             if (contactLink) {
 
                 contactLink.classList.add(
                     "active"
                 );
-
 
                 contactLink.setAttribute(
                     "aria-current",
@@ -321,7 +450,6 @@
                     "active"
                 );
 
-
                 blogLink.setAttribute(
                     "aria-current",
                     "page"
@@ -354,7 +482,6 @@
                 projectsLink.classList.add(
                     "active"
                 );
-
 
                 projectsLink.setAttribute(
                     "aria-current",
@@ -390,7 +517,6 @@
                     "active"
                 );
 
-
                 aboutLink.setAttribute(
                     "aria-current",
                     "page"
@@ -403,38 +529,40 @@
 
         }
 
-/* =================================================
-   HOW WE WORK
-================================================= */
 
-if (
-    currentPage === "how-we-work.html"
-) {
+        /* =================================================
+           HOW WE WORK
+        ================================================= */
 
-    const howWeWorkLink =
-        document.querySelector(
-            'a[data-page="how-we-work.html"]'
-        );
+        if (
+            currentPage === "how-we-work.html"
+        ) {
 
-
-    if (howWeWorkLink) {
-
-        howWeWorkLink.classList.add(
-            "active"
-        );
+            const howWeWorkLink =
+                document.querySelector(
+                    'a[data-page="how-we-work.html"]'
+                );
 
 
-        howWeWorkLink.setAttribute(
-            "aria-current",
-            "page"
-        );
+            if (howWeWorkLink) {
 
-    }
+                howWeWorkLink.classList.add(
+                    "active"
+                );
+
+                howWeWorkLink.setAttribute(
+                    "aria-current",
+                    "page"
+                );
+
+            }
 
 
-    return;
+            return;
 
-}
+        }
+
+
         /* =================================================
            STRUCTURAL STEEL DETAILING
         ================================================= */
@@ -456,15 +584,6 @@ if (
                 );
 
 
-            /*
-             * Services button remains active.
-             *
-             * IMPORTANT:
-             * We DO NOT open the dropdown here.
-             *
-             * User must click Services.
-             */
-
             if (servicesButton) {
 
                 servicesButton.classList.add(
@@ -479,7 +598,6 @@ if (
                 serviceLink.classList.add(
                     "active"
                 );
-
 
                 serviceLink.setAttribute(
                     "aria-current",
@@ -514,7 +632,6 @@ if (
                     "active"
                 );
 
-
                 homeLink.setAttribute(
                     "aria-current",
                     "page"
@@ -528,15 +645,34 @@ if (
 
 
     /* =====================================================
+       REVEAL PAGE
+    ===================================================== */
+
+    function revealPage() {
+
+        requestAnimationFrame(function () {
+
+            requestAnimationFrame(function () {
+
+                document.documentElement.classList.add(
+                    "grid-components-ready"
+                );
+
+            });
+
+        });
+
+    }
+
+
+    /* =====================================================
        MAIN LOADING FLOW
     ===================================================== */
 
     try {
 
-
         /* =================================================
-           STEP 1
-           LOAD NAVBAR CSS FIRST
+           STEP 1 — NAVBAR CSS
         ================================================= */
 
         await loadCSS(
@@ -545,8 +681,7 @@ if (
 
 
         /* =================================================
-           STEP 2
-           LOAD COMPONENT HTML
+           STEP 2 — COMPONENT HTML
         ================================================= */
 
         await Promise.all(
@@ -566,8 +701,7 @@ if (
 
 
         /* =================================================
-           STEP 3
-           LOAD NAVBAR JS
+           STEP 3 — NAVBAR JS
         ================================================= */
 
         await loadJS(
@@ -576,16 +710,14 @@ if (
 
 
         /* =================================================
-           STEP 4
-           SET ACTIVE NAVIGATION
+           STEP 4 — ACTIVE NAVIGATION
         ================================================= */
 
         setActiveNavigation();
 
 
         /* =================================================
-           STEP 5
-           LOAD MAIN JS
+           STEP 5 — MAIN JS
         ================================================= */
 
         await loadJS(
@@ -594,20 +726,17 @@ if (
 
 
         /* =================================================
-           STEP 6
-           FINAL ACTIVE NAVIGATION
+           STEP 6 — FINAL ACTIVE NAVIGATION
         ================================================= */
 
         setActiveNavigation();
 
 
         /* =================================================
-           COMPONENTS READY
+           STEP 7 — PAGE READY
         ================================================= */
 
-        document.documentElement.classList.add(
-            "grid-components-ready"
-        );
+        revealPage();
 
 
     } catch (error) {
@@ -615,6 +744,17 @@ if (
         console.error(
             "Grid Detailing component loading error:",
             error
+        );
+
+
+        /*
+         * Never leave the user with a
+         * permanently invisible page if
+         * something fails.
+         */
+
+        document.documentElement.classList.add(
+            "grid-components-ready"
         );
 
     }
