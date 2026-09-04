@@ -1,16 +1,4 @@
-/* =========================================================
-   GRID DETAILING
-   COMPONENT LOADER
-   Navbar + Footer + Floating Components
 
-   PREMIUM / STABLE LOADING
-   ---------------------------------------------------------
-   - Prevents component flash
-   - Prevents navbar flash
-   - Prevents duplicate initialization
-   - Controlled page reveal
-   - Keeps active navigation stable
-========================================================= */
 
 (async function () {
 
@@ -18,73 +6,57 @@
 
 
     /* =====================================================
+       PREVENT DUPLICATE INITIALIZATION
+    ===================================================== */
+
+    if (
+        window.__GRID_COMPONENT_LOADER_INITIALIZED__
+    ) {
+
+        return;
+
+    }
+
+
+    window.__GRID_COMPONENT_LOADER_INITIALIZED__ =
+        true;
+
+
+    /* =====================================================
        COMPONENT LIST
     ===================================================== */
 
     const components = [
-        ["navbar-component", "components/navbar.html"],
-        ["footer-component", "components/footer.html"],
-        ["floating-component", "components/floating.html"]
+
+        [
+            "navbar-component",
+            "components/navbar.html"
+        ],
+
+        [
+            "footer-component",
+            "components/footer.html"
+        ],
+
+        [
+            "floating-component",
+            "components/floating.html"
+        ]
+
     ];
 
 
     /* =====================================================
-       PREVENT DUPLICATE LOADER
-    ===================================================== */
-
-    if (window.__GRID_COMPONENT_LOADER_INITIALIZED__) {
-        return;
-    }
-
-    window.__GRID_COMPONENT_LOADER_INITIALIZED__ = true;
-
-
-    /* =====================================================
-       PREVENT PAGE FLASH
+       COMPONENT LOADING STATE
        -----------------------------------------------------
-       Inject immediately before component loading.
+       IMPORTANT:
+       Body ko hide nahi karna.
+       Sirf HTML state maintain karni hai.
     ===================================================== */
 
-    function installPreloadState() {
-
-        if (
-            document.getElementById(
-                "grid-component-preload-style"
-            )
-        ) {
-            return;
-        }
-
-
-        const style =
-            document.createElement("style");
-
-        style.id =
-            "grid-component-preload-style";
-
-
-        style.textContent = `
-
-            html:not(.grid-components-ready) body {
-                visibility: hidden;
-                opacity: 0;
-            }
-
-            html.grid-components-ready body {
-                visibility: visible;
-                opacity: 1;
-                transition: opacity .16s ease;
-            }
-
-        `;
-
-
-        document.head.appendChild(style);
-
-    }
-
-
-    installPreloadState();
+    document.documentElement.classList.add(
+        "grid-components-loading"
+    );
 
 
     /* =====================================================
@@ -93,87 +65,122 @@
 
     function loadCSS(file) {
 
-        return new Promise((resolve, reject) => {
+        return new Promise(
+            function (resolve, reject) {
 
-            const existing =
-                document.querySelector(
-                    `link[data-grid-component-css="${file}"]`
-                );
+                const existing =
+                    document.querySelector(
+                        `link[data-grid-component-css="${file}"]`
+                    );
 
 
-            if (existing) {
+                /* =========================================
+                   CSS ALREADY EXISTS
+                ========================================= */
 
-                if (
-                    existing.sheet
-                ) {
+                if (existing) {
 
-                    resolve();
+                    /*
+                     * Browser may already have loaded it.
+                     */
+
+                    if (
+                        existing.sheet
+                    ) {
+
+                        resolve();
+
+                        return;
+
+                    }
+
+
+                    existing.addEventListener(
+                        "load",
+                        function () {
+
+                            resolve();
+
+                        },
+                        {
+                            once: true
+                        }
+                    );
+
+
+                    existing.addEventListener(
+                        "error",
+                        function () {
+
+                            reject(
+                                new Error(
+                                    `Could not load ${file}`
+                                )
+                            );
+
+                        },
+                        {
+                            once: true
+                        }
+                    );
+
 
                     return;
 
                 }
 
 
-                existing.addEventListener(
-                    "load",
-                    resolve,
-                    {
-                        once: true
-                    }
+                /* =========================================
+                   CREATE STYLESHEET
+                ========================================= */
+
+                const link =
+                    document.createElement("link");
+
+
+                link.rel =
+                    "stylesheet";
+
+
+                link.href =
+                    file;
+
+
+                link.dataset.gridComponentCss =
+                    file;
+
+
+                link.onload =
+                    function () {
+
+                        resolve();
+
+                    };
+
+
+                link.onerror =
+                    function () {
+
+                        console.error(
+                            `Grid Detailing: Could not load CSS ${file}`
+                        );
+
+
+                        reject(
+                            new Error(
+                                `Could not load ${file}`
+                            )
+                        );
+
+                    };
+
+
+                document.head.appendChild(
+                    link
                 );
-
-
-                existing.addEventListener(
-                    "error",
-                    reject,
-                    {
-                        once: true
-                    }
-                );
-
-
-                return;
 
             }
-
-
-            const link =
-                document.createElement("link");
-
-
-            link.rel = "stylesheet";
-
-            link.href = file;
-
-            link.dataset.gridComponentCss = file;
-
-
-            link.onload = function () {
-
-                resolve();
-
-            };
-
-
-            link.onerror = function () {
-
-                console.error(
-                    `Grid Detailing: Could not load CSS ${file}`
-                );
-
-
-                reject(
-                    new Error(
-                        `Could not load ${file}`
-                    )
-                );
-
-            };
-
-
-            document.head.appendChild(link);
-
-        });
+        );
 
     }
 
@@ -184,89 +191,127 @@
 
     function loadJS(file) {
 
-        return new Promise((resolve, reject) => {
+        return new Promise(
+            function (resolve, reject) {
 
-            const existing =
-                document.querySelector(
-                    `script[data-grid-component-js="${file}"]`
-                );
+                const existing =
+                    document.querySelector(
+                        `script[data-grid-component-js="${file}"]`
+                    );
 
 
-            if (existing) {
+                /* =========================================
+                   SCRIPT ALREADY EXISTS
+                ========================================= */
 
-                if (
-                    existing.dataset.loaded === "true"
-                ) {
+                if (existing) {
 
-                    resolve();
+                    if (
+                        existing.dataset.loaded ===
+                        "true"
+                    ) {
+
+                        resolve();
+
+                        return;
+
+                    }
+
+
+                    existing.addEventListener(
+                        "load",
+                        function () {
+
+                            resolve();
+
+                        },
+                        {
+                            once: true
+                        }
+                    );
+
+
+                    existing.addEventListener(
+                        "error",
+                        function () {
+
+                            reject(
+                                new Error(
+                                    `Could not load ${file}`
+                                )
+                            );
+
+                        },
+                        {
+                            once: true
+                        }
+                    );
+
 
                     return;
 
                 }
 
 
-                existing.addEventListener(
-                    "load",
-                    resolve,
-                    {
-                        once: true
-                    }
+                /* =========================================
+                   CREATE SCRIPT
+                ========================================= */
+
+                const script =
+                    document.createElement("script");
+
+
+                script.src =
+                    file;
+
+
+                script.dataset.gridComponentJs =
+                    file;
+
+
+                /*
+                 * Keep execution order stable.
+                 */
+
+                script.async =
+                    false;
+
+
+                script.onload =
+                    function () {
+
+                        script.dataset.loaded =
+                            "true";
+
+
+                        resolve();
+
+                    };
+
+
+                script.onerror =
+                    function () {
+
+                        console.error(
+                            `Grid Detailing: Could not load JS ${file}`
+                        );
+
+
+                        reject(
+                            new Error(
+                                `Could not load ${file}`
+                            )
+                        );
+
+                    };
+
+
+                document.body.appendChild(
+                    script
                 );
-
-
-                existing.addEventListener(
-                    "error",
-                    reject,
-                    {
-                        once: true
-                    }
-                );
-
-
-                return;
 
             }
-
-
-            const script =
-                document.createElement("script");
-
-
-            script.src = file;
-
-            script.dataset.gridComponentJs = file;
-
-            script.async = false;
-
-
-            script.onload = function () {
-
-                script.dataset.loaded = "true";
-
-                resolve();
-
-            };
-
-
-            script.onerror = function () {
-
-                console.error(
-                    `Grid Detailing: Could not load JS ${file}`
-                );
-
-
-                reject(
-                    new Error(
-                        `Could not load ${file}`
-                    )
-                );
-
-            };
-
-
-            document.body.appendChild(script);
-
-        });
+        );
 
     }
 
@@ -281,14 +326,21 @@
     ) {
 
         const target =
-            document.getElementById(targetId);
+            document.getElementById(
+                targetId
+            );
 
+
+        /* =========================================
+           TARGET NOT FOUND
+        ========================================= */
 
         if (!target) {
 
             console.warn(
                 `Grid Detailing: #${targetId} not found.`
             );
+
 
             return false;
 
@@ -306,7 +358,13 @@
                 );
 
 
-            if (!response.ok) {
+            /* =========================================
+               HTTP ERROR
+            ========================================= */
+
+            if (
+                !response.ok
+            ) {
 
                 throw new Error(
                     `${file}: ${response.status}`
@@ -319,7 +377,12 @@
                 await response.text();
 
 
-            target.innerHTML = html;
+            /*
+             * Inject component.
+             */
+
+            target.innerHTML =
+                html;
 
 
             return true;
@@ -332,6 +395,11 @@
                 error
             );
 
+
+            /*
+             * Keep page usable even if
+             * one optional component fails.
+             */
 
             return false;
 
@@ -354,7 +422,10 @@
 
 
         if (!currentPage) {
-            currentPage = "index.html";
+
+            currentPage =
+                "index.html";
+
         }
 
 
@@ -366,15 +437,20 @@
             .querySelectorAll(
                 ".grid-nav-item, .grid-service-link"
             )
-            .forEach(function (item) {
+            .forEach(
+                function (item) {
 
-                item.classList.remove("active");
+                    item.classList.remove(
+                        "active"
+                    );
 
-                item.removeAttribute(
-                    "aria-current"
-                );
 
-            });
+                    item.removeAttribute(
+                        "aria-current"
+                    );
+
+                }
+            );
 
 
         /* =================================================
@@ -382,8 +458,10 @@
         ================================================= */
 
         if (
-            currentPage === "contact-us.html" ||
-            currentPage === "contact.html"
+            currentPage ===
+                "contact-us.html" ||
+            currentPage ===
+                "contact.html"
         ) {
 
             const contactLink =
@@ -393,7 +471,8 @@
 
 
             /*
-             * Respect GET A QUOTE source.
+             * Check whether the user arrived
+             * through GET A QUOTE.
              */
 
             const source =
@@ -403,7 +482,8 @@
 
 
             if (
-                source === "quote"
+                source ===
+                "quote"
             ) {
 
                 return;
@@ -416,6 +496,7 @@
                 contactLink.classList.add(
                     "active"
                 );
+
 
                 contactLink.setAttribute(
                     "aria-current",
@@ -435,7 +516,8 @@
         ================================================= */
 
         if (
-            currentPage === "blog.html"
+            currentPage ===
+            "blog.html"
         ) {
 
             const blogLink =
@@ -449,6 +531,7 @@
                 blogLink.classList.add(
                     "active"
                 );
+
 
                 blogLink.setAttribute(
                     "aria-current",
@@ -468,7 +551,8 @@
         ================================================= */
 
         if (
-            currentPage === "projects.html"
+            currentPage ===
+            "projects.html"
         ) {
 
             const projectsLink =
@@ -482,6 +566,7 @@
                 projectsLink.classList.add(
                     "active"
                 );
+
 
                 projectsLink.setAttribute(
                     "aria-current",
@@ -501,8 +586,10 @@
         ================================================= */
 
         if (
-            currentPage === "about.html" ||
-            currentPage === "about-us.html"
+            currentPage ===
+                "about.html" ||
+            currentPage ===
+                "about-us.html"
         ) {
 
             const aboutLink =
@@ -516,6 +603,7 @@
                 aboutLink.classList.add(
                     "active"
                 );
+
 
                 aboutLink.setAttribute(
                     "aria-current",
@@ -535,7 +623,8 @@
         ================================================= */
 
         if (
-            currentPage === "how-we-work.html"
+            currentPage ===
+            "how-we-work.html"
         ) {
 
             const howWeWorkLink =
@@ -549,6 +638,7 @@
                 howWeWorkLink.classList.add(
                     "active"
                 );
+
 
                 howWeWorkLink.setAttribute(
                     "aria-current",
@@ -599,6 +689,7 @@
                     "active"
                 );
 
+
                 serviceLink.setAttribute(
                     "aria-current",
                     "page"
@@ -617,7 +708,8 @@
         ================================================= */
 
         if (
-            currentPage === "index.html"
+            currentPage ===
+            "index.html"
         ) {
 
             const homeLink =
@@ -632,6 +724,7 @@
                     "active"
                 );
 
+
                 homeLink.setAttribute(
                     "aria-current",
                     "page"
@@ -645,22 +738,19 @@
 
 
     /* =====================================================
-       REVEAL PAGE
+       MARK COMPONENTS READY
     ===================================================== */
 
-    function revealPage() {
+    function componentsReady() {
 
-        requestAnimationFrame(function () {
+        document.documentElement.classList.remove(
+            "grid-components-loading"
+        );
 
-            requestAnimationFrame(function () {
 
-                document.documentElement.classList.add(
-                    "grid-components-ready"
-                );
-
-            });
-
-        });
+        document.documentElement.classList.add(
+            "grid-components-ready"
+        );
 
     }
 
@@ -672,7 +762,8 @@
     try {
 
         /* =================================================
-           STEP 1 — NAVBAR CSS
+           STEP 1
+           LOAD NAVBAR CSS FIRST
         ================================================= */
 
         await loadCSS(
@@ -681,7 +772,8 @@
 
 
         /* =================================================
-           STEP 2 — COMPONENT HTML
+           STEP 2
+           LOAD HTML COMPONENTS
         ================================================= */
 
         await Promise.all(
@@ -701,7 +793,8 @@
 
 
         /* =================================================
-           STEP 3 — NAVBAR JS
+           STEP 3
+           LOAD NAVBAR JS
         ================================================= */
 
         await loadJS(
@@ -710,14 +803,16 @@
 
 
         /* =================================================
-           STEP 4 — ACTIVE NAVIGATION
+           STEP 4
+           ACTIVE NAVIGATION
         ================================================= */
 
         setActiveNavigation();
 
 
         /* =================================================
-           STEP 5 — MAIN JS
+           STEP 5
+           LOAD MAIN JS
         ================================================= */
 
         await loadJS(
@@ -726,17 +821,19 @@
 
 
         /* =================================================
-           STEP 6 — FINAL ACTIVE NAVIGATION
+           STEP 6
+           FINAL ACTIVE NAVIGATION
         ================================================= */
 
         setActiveNavigation();
 
 
         /* =================================================
-           STEP 7 — PAGE READY
+           STEP 7
+           COMPONENTS READY
         ================================================= */
 
-        revealPage();
+        componentsReady();
 
 
     } catch (error) {
@@ -748,14 +845,12 @@
 
 
         /*
-         * Never leave the user with a
-         * permanently invisible page if
-         * something fails.
+         * IMPORTANT:
+         * Never leave the website in a
+         * blocked/hidden state.
          */
 
-        document.documentElement.classList.add(
-            "grid-components-ready"
-        );
+        componentsReady();
 
     }
 
