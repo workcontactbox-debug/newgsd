@@ -2,20 +2,9 @@
    GRID DETAILING
    COMPONENT LOADER
    Navbar + Footer + Floating Components
-
-   Stable Loading
-   No Navbar Flash
-   No Duplicate Initialization
 ========================================================= */
 
-(async function () {
-
-    "use strict";
-
-
-    /* =====================================================
-       COMPONENT LIST
-    ===================================================== */
+(async function loadComponents(){
 
     const components = [
         ["navbar-component", "components/navbar.html"],
@@ -25,172 +14,32 @@
 
 
     /* =====================================================
-       LOAD CSS ONCE
+       LOAD COMPONENT
     ===================================================== */
 
-    function loadCSS(file) {
-
-        return new Promise((resolve, reject) => {
-
-            const existing =
-                document.querySelector(
-                    `link[data-grid-component-css="${file}"]`
-                );
-
-
-            if (existing) {
-
-                /*
-                 * If stylesheet already exists,
-                 * continue immediately.
-                 */
-
-                resolve();
-                return;
-
-            }
-
-
-            const link =
-                document.createElement("link");
-
-
-            link.rel = "stylesheet";
-
-            link.href = file;
-
-            link.dataset.gridComponentCss = file;
-
-
-            link.onload = function () {
-
-                resolve();
-
-            };
-
-
-            link.onerror = function () {
-
-                console.error(
-                    `Grid Detailing: Could not load CSS ${file}`
-                );
-
-
-                reject(
-                    new Error(
-                        `Could not load ${file}`
-                    )
-                );
-
-            };
-
-
-            document.head.appendChild(link);
-
-        });
-
-    }
-
-
-    /* =====================================================
-       LOAD JAVASCRIPT ONCE
-    ===================================================== */
-
-    function loadJS(file) {
-
-        return new Promise((resolve, reject) => {
-
-            const existing =
-                document.querySelector(
-                    `script[data-grid-component-js="${file}"]`
-                );
-
-
-            if (existing) {
-
-                resolve();
-                return;
-
-            }
-
-
-            const script =
-                document.createElement("script");
-
-
-            script.src = file;
-
-            script.dataset.gridComponentJs = file;
-
-            script.async = false;
-
-
-            script.onload = function () {
-
-                resolve();
-
-            };
-
-
-            script.onerror = function () {
-
-                console.error(
-                    `Grid Detailing: Could not load JS ${file}`
-                );
-
-
-                reject(
-                    new Error(
-                        `Could not load ${file}`
-                    )
-                );
-
-            };
-
-
-            document.body.appendChild(script);
-
-        });
-
-    }
-
-
-    /* =====================================================
-       LOAD HTML COMPONENT
-    ===================================================== */
-
-    async function loadComponent(
-        targetId,
-        file
-    ) {
+    async function loadInto(targetId, file){
 
         const target =
             document.getElementById(targetId);
 
 
-        if (!target) {
+        if(!target){
 
             console.warn(
                 `Grid Detailing: #${targetId} not found.`
             );
 
-            return false;
-
+            return;
         }
 
 
-        try {
+        try{
 
             const response =
-                await fetch(
-                    file,
-                    {
-                        cache: "no-cache"
-                    }
-                );
+                await fetch(file);
 
 
-            if (!response.ok) {
+            if(!response.ok){
 
                 throw new Error(
                     `${file}: ${response.status}`
@@ -199,25 +48,16 @@
             }
 
 
-            const html =
+            target.innerHTML =
                 await response.text();
 
 
-            target.innerHTML = html;
-
-
-            return true;
-
-
-        } catch (error) {
+        }catch(error){
 
             console.error(
                 `Grid Detailing: Could not load ${file}`,
                 error
             );
-
-
-            return false;
 
         }
 
@@ -228,7 +68,7 @@
        ACTIVE NAVIGATION
     ===================================================== */
 
-    function setActiveNavigation() {
+    function setActiveNavigation(){
 
         let currentPage =
             window.location.pathname
@@ -237,27 +77,27 @@
                 .toLowerCase();
 
 
-        if (!currentPage) {
+        if(!currentPage){
 
-            currentPage = "index.html";
+            currentPage =
+                "index.html";
 
         }
 
 
         /* =================================================
-           REMOVE OLD ACTIVE STATES
+           REMOVE ALL ACTIVE STATES
         ================================================= */
 
         document
             .querySelectorAll(
-                ".grid-nav-item, .grid-service-link"
+                ".nav-item, .nav-dropdown-wrap, .service-menu-card"
             )
-            .forEach(function (item) {
+            .forEach(item => {
 
                 item.classList.remove(
                     "active"
                 );
-
 
                 item.removeAttribute(
                     "aria-current"
@@ -267,26 +107,88 @@
 
 
         /* =================================================
-           CONTACT
+           RESET SERVICES DROPDOWN STATE
         ================================================= */
 
-        if (
+        const servicesButton =
+            document.querySelector(
+                ".nav-dropdown-btn"
+            );
+
+
+        const servicesWrap =
+            document.querySelector(
+                ".nav-dropdown-wrap"
+            );
+
+
+        if(servicesButton){
+
+            servicesButton.classList.remove(
+                "active"
+            );
+
+            servicesButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            servicesButton.removeAttribute(
+                "aria-current"
+            );
+
+        }
+
+
+        if(servicesWrap){
+
+            servicesWrap.classList.remove(
+                "active"
+            );
+
+        }
+
+
+        /* =================================================
+           CONTACT US
+        ================================================= */
+
+        if(
             currentPage === "contact-us.html" ||
             currentPage === "contact.html"
-        ) {
+        ){
 
-            const contactLink =
+            let contactLink =
                 document.querySelector(
-                    'a[data-page="contact-us.html"]'
+                    '[data-page="contact-us.html"]'
                 );
 
 
-            if (contactLink) {
+            if(!contactLink){
+
+                contactLink =
+                    document.querySelector(
+                        'a[href="contact-us.html"]'
+                    );
+
+            }
+
+
+            if(!contactLink){
+
+                contactLink =
+                    document.querySelector(
+                        'a[href*="contact-us.html"]'
+                    );
+
+            }
+
+
+            if(contactLink){
 
                 contactLink.classList.add(
                     "active"
                 );
-
 
                 contactLink.setAttribute(
                     "aria-current",
@@ -294,7 +196,6 @@
                 );
 
             }
-
 
             return;
 
@@ -305,22 +206,21 @@
            BLOG
         ================================================= */
 
-        if (
+        if(
             currentPage === "blog.html"
-        ) {
+        ){
 
             const blogLink =
                 document.querySelector(
-                    'a[data-page="blog.html"]'
+                    'a[href="blog.html"]'
                 );
 
 
-            if (blogLink) {
+            if(blogLink){
 
                 blogLink.classList.add(
                     "active"
                 );
-
 
                 blogLink.setAttribute(
                     "aria-current",
@@ -328,7 +228,6 @@
                 );
 
             }
-
 
             return;
 
@@ -339,22 +238,21 @@
            PROJECTS
         ================================================= */
 
-        if (
+        if(
             currentPage === "projects.html"
-        ) {
+        ){
 
             const projectsLink =
                 document.querySelector(
-                    'a[data-page="projects.html"]'
+                    'a[href="projects.html"]'
                 );
 
 
-            if (projectsLink) {
+            if(projectsLink){
 
                 projectsLink.classList.add(
                     "active"
                 );
-
 
                 projectsLink.setAttribute(
                     "aria-current",
@@ -363,33 +261,41 @@
 
             }
 
-
             return;
 
         }
 
 
         /* =================================================
-           ABOUT
+           ABOUT US
         ================================================= */
 
-        if (
+        if(
             currentPage === "about.html" ||
             currentPage === "about-us.html"
-        ) {
+        ){
 
-            const aboutLink =
+            let aboutLink =
                 document.querySelector(
-                    '[data-page="about.html"]'
+                    'a[href="about.html"]'
                 );
 
 
-            if (aboutLink) {
+            if(!aboutLink){
+
+                aboutLink =
+                    document.querySelector(
+                        'a[href="about-us.html"]'
+                    );
+
+            }
+
+
+            if(aboutLink){
 
                 aboutLink.classList.add(
                     "active"
                 );
-
 
                 aboutLink.setAttribute(
                     "aria-current",
@@ -398,96 +304,76 @@
 
             }
 
-
             return;
 
         }
 
-/* =================================================
-   HOW WE WORK
-================================================= */
 
-if (
-    currentPage === "how-we-work.html"
-) {
-
-    const howWeWorkLink =
-        document.querySelector(
-            'a[data-page="how-we-work.html"]'
-        );
-
-
-    if (howWeWorkLink) {
-
-        howWeWorkLink.classList.add(
-            "active"
-        );
-
-
-        howWeWorkLink.setAttribute(
-            "aria-current",
-            "page"
-        );
-
-    }
-
-
-    return;
-
-}
         /* =================================================
            STRUCTURAL STEEL DETAILING
         ================================================= */
 
-        if (
+        if(
             currentPage ===
             "structural-steel-detailing.html"
-        ) {
+        ){
 
-            const servicesButton =
-                document.getElementById(
-                    "gridServicesBtn"
-                );
-
-
-            const serviceLink =
-                document.querySelector(
-                    '[data-page="structural-steel-detailing.html"]'
-                );
-
-
-            /*
-             * Services button remains active.
-             *
-             * IMPORTANT:
-             * We DO NOT open the dropdown here.
-             *
-             * User must click Services.
-             */
-
-            if (servicesButton) {
+            if(servicesButton){
 
                 servicesButton.classList.add(
                     "active"
                 );
 
-            }
+                /*
+                 * Do NOT force the dropdown open here.
+                 * main.js controls the actual dropdown.
+                 */
 
-
-            if (serviceLink) {
-
-                serviceLink.classList.add(
-                    "active"
-                );
-
-
-                serviceLink.setAttribute(
+                servicesButton.setAttribute(
                     "aria-current",
                     "page"
                 );
 
             }
 
+
+            if(servicesWrap){
+
+                servicesWrap.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            let structuralSteelLink =
+                document.querySelector(
+                    '[data-page="structural-steel-detailing.html"]'
+                );
+
+
+            if(!structuralSteelLink){
+
+                structuralSteelLink =
+                    document.querySelector(
+                        'a[href="structural-steel-detailing.html"]'
+                    );
+
+            }
+
+
+            if(structuralSteelLink){
+
+                structuralSteelLink.classList.add(
+                    "active"
+                );
+
+                structuralSteelLink.setAttribute(
+                    "aria-current",
+                    "page"
+                );
+
+            }
 
             return;
 
@@ -498,22 +384,24 @@ if (
            HOME
         ================================================= */
 
-        if (
+        if(
             currentPage === "index.html"
-        ) {
+        ){
 
             const homeLink =
                 document.querySelector(
-                    'a[data-page="index.html"]'
+                    'a[href="index.html#home"], ' +
+                    'a[href="index.html"], ' +
+                    'a[href="./index.html#home"], ' +
+                    'a[href="./index.html"]'
                 );
 
 
-            if (homeLink) {
+            if(homeLink){
 
                 homeLink.classList.add(
                     "active"
                 );
-
 
                 homeLink.setAttribute(
                     "aria-current",
@@ -528,89 +416,115 @@ if (
 
 
     /* =====================================================
-       MAIN LOADING FLOW
+       LOAD COMPONENTS
     ===================================================== */
 
-    try {
-
-
-        /* =================================================
-           STEP 1
-           LOAD NAVBAR CSS FIRST
-        ================================================= */
-
-        await loadCSS(
-            "css/navbar.css"
-        );
-
-
-        /* =================================================
-           STEP 2
-           LOAD COMPONENT HTML
-        ================================================= */
+    try{
 
         await Promise.all(
 
             components.map(
-                function ([targetId, file]) {
-
-                    return loadComponent(
+                ([targetId, file]) =>
+                    loadInto(
                         targetId,
                         file
-                    );
-
-                }
+                    )
             )
 
         );
 
 
         /* =================================================
-           STEP 3
-           LOAD NAVBAR JS
-        ================================================= */
-
-        await loadJS(
-            "js/navbar.js"
-        );
-
-
-        /* =================================================
-           STEP 4
-           SET ACTIVE NAVIGATION
+           NAVBAR COMPONENT IS NOW READY
         ================================================= */
 
         setActiveNavigation();
 
 
         /* =================================================
-           STEP 5
-           LOAD MAIN JS
+           LOAD MAIN JS ONLY ONCE
         ================================================= */
 
-        await loadJS(
-            "js/main.js"
-        );
+        if(
+            !document.querySelector(
+                'script[data-grid-main-js="true"]'
+            )
+        ){
+
+            const script =
+                document.createElement(
+                    "script"
+                );
 
 
-        /* =================================================
-           STEP 6
-           FINAL ACTIVE NAVIGATION
-        ================================================= */
+            /*
+             * MAIN JS
+             *
+             * This file contains:
+             * - Mobile menu
+             * - Services dropdown
+             * - Navbar scroll
+             * - Hero slider
+             * - Project slider
+             * - Counters
+             * - Scroll reveal
+             * - AI assistant
+             * - Other main functionality
+             */
 
-        setActiveNavigation();
+            script.src =
+                "js/main.js";
 
 
-        /* =================================================
-           COMPONENTS READY
-        ================================================= */
-
-        document.documentElement.classList.add(
-            "grid-components-ready"
-        );
+            script.dataset.gridMainJs =
+                "true";
 
 
-    } catch (error) {
+            script.onload = function(){
+
+                /*
+                 * Navbar has already been injected.
+                 * main.js is now ready.
+                 */
+
+                setTimeout(
+                    function(){
+
+                        setActiveNavigation();
+
+                    },
+                    50
+                );
+
+            };
+
+
+            script.onerror = function(){
+
+                console.error(
+                    "Grid Detailing: js/main.js could not be loaded."
+                );
+
+            };
+
+
+            document.body.appendChild(
+                script
+            );
+
+        }else{
+
+            /*
+             * main.js already exists.
+             * Just refresh active navigation.
+             */
+
+            setActiveNavigation();
+
+        }
+
+
+    }catch(error){
 
         console.error(
             "Grid Detailing component loading error:",
