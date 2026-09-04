@@ -1,10 +1,29 @@
 /* =========================================================
-   GRID DETAILING
+   GRID STEEL DETAILING
    COMPONENT LOADER
+   GitHub Pages Safe / No Duplicate Loading
    Navbar + Footer + Floating Components
 ========================================================= */
 
-(async function loadComponents(){
+(function () {
+
+    "use strict";
+
+
+    /* =====================================================
+       DUPLICATE LOAD PROTECTION
+    ===================================================== */
+
+    if (window.__GRID_COMPONENTS_INITIALIZED__) {
+        return;
+    }
+
+    window.__GRID_COMPONENTS_INITIALIZED__ = true;
+
+
+    /* =====================================================
+       COMPONENTS
+    ===================================================== */
 
     const components = [
         ["navbar-component", "components/navbar.html"],
@@ -14,50 +33,86 @@
 
 
     /* =====================================================
+       HTML LOADING STATE
+    ===================================================== */
+
+    document.documentElement.classList.add(
+        "grid-components-loading"
+    );
+
+
+    /* =====================================================
        LOAD COMPONENT
     ===================================================== */
 
-    async function loadInto(targetId, file){
+    async function loadInto(targetId, file) {
 
         const target =
             document.getElementById(targetId);
 
 
-        if(!target){
+        if (!target) {
 
             console.warn(
                 `Grid Detailing: #${targetId} not found.`
             );
 
-            return;
+            return false;
         }
 
 
-        try{
+        try {
 
             const response =
-                await fetch(file);
+                await fetch(file, {
+                    method: "GET",
+                    cache: "default"
+                });
 
 
-            if(!response.ok){
+            if (!response.ok) {
 
                 throw new Error(
-                    `${file}: ${response.status}`
+                    `${file}: HTTP ${response.status}`
                 );
 
             }
 
 
-            target.innerHTML =
+            const html =
                 await response.text();
 
 
-        }catch(error){
+            /*
+             * Inject only after the complete
+             * component file has been received.
+             */
+
+            target.innerHTML = html;
+
+
+            target.classList.add(
+                "grid-component-loaded"
+            );
+
+
+            return true;
+
+
+        } catch (error) {
 
             console.error(
                 `Grid Detailing: Could not load ${file}`,
                 error
             );
+
+
+            target.classList.add(
+                "grid-component-error"
+            );
+
+
+            return false;
 
         }
 
@@ -68,7 +123,7 @@
        ACTIVE NAVIGATION
     ===================================================== */
 
-    function setActiveNavigation(){
+    function setActiveNavigation() {
 
         let currentPage =
             window.location.pathname
@@ -77,27 +132,23 @@
                 .toLowerCase();
 
 
-        if(!currentPage){
-
-            currentPage =
-                "index.html";
-
+        if (!currentPage) {
+            currentPage = "index.html";
         }
 
 
-        /* =================================================
-           REMOVE ALL ACTIVE STATES
-        ================================================= */
+        /*
+         * Remove previous active states
+         */
 
         document
             .querySelectorAll(
-                ".nav-item, .nav-dropdown-wrap, .service-menu-card"
+                ".nav-item, .nav-dropdown-wrap, .service-menu-card, " +
+                ".grid-nav-links a, .grid-quote-btn"
             )
             .forEach(item => {
 
-                item.classList.remove(
-                    "active"
-                );
+                item.classList.remove("active");
 
                 item.removeAttribute(
                     "aria-current"
@@ -107,7 +158,7 @@
 
 
         /* =================================================
-           RESET SERVICES DROPDOWN STATE
+           SERVICES
         ================================================= */
 
         const servicesButton =
@@ -122,7 +173,7 @@
             );
 
 
-        if(servicesButton){
+        if (servicesButton) {
 
             servicesButton.classList.remove(
                 "active"
@@ -140,7 +191,7 @@
         }
 
 
-        if(servicesWrap){
+        if (servicesWrap) {
 
             servicesWrap.classList.remove(
                 "active"
@@ -150,45 +201,25 @@
 
 
         /* =================================================
-           CONTACT US
+           CONTACT
         ================================================= */
 
-        if(
+        if (
             currentPage === "contact-us.html" ||
             currentPage === "contact.html"
-        ){
+        ) {
 
-            let contactLink =
+            const contactLink =
                 document.querySelector(
-                    '[data-page="contact-us.html"]'
+                    '[data-page="contact-us.html"], ' +
+                    'a[href="contact-us.html"], ' +
+                    'a[href*="contact-us.html"]'
                 );
 
 
-            if(!contactLink){
+            if (contactLink) {
 
-                contactLink =
-                    document.querySelector(
-                        'a[href="contact-us.html"]'
-                    );
-
-            }
-
-
-            if(!contactLink){
-
-                contactLink =
-                    document.querySelector(
-                        'a[href*="contact-us.html"]'
-                    );
-
-            }
-
-
-            if(contactLink){
-
-                contactLink.classList.add(
-                    "active"
-                );
+                contactLink.classList.add("active");
 
                 contactLink.setAttribute(
                     "aria-current",
@@ -198,7 +229,6 @@
             }
 
             return;
-
         }
 
 
@@ -206,9 +236,7 @@
            BLOG
         ================================================= */
 
-        if(
-            currentPage === "blog.html"
-        ){
+        if (currentPage === "blog.html") {
 
             const blogLink =
                 document.querySelector(
@@ -216,11 +244,9 @@
                 );
 
 
-            if(blogLink){
+            if (blogLink) {
 
-                blogLink.classList.add(
-                    "active"
-                );
+                blogLink.classList.add("active");
 
                 blogLink.setAttribute(
                     "aria-current",
@@ -230,7 +256,6 @@
             }
 
             return;
-
         }
 
 
@@ -238,9 +263,7 @@
            PROJECTS
         ================================================= */
 
-        if(
-            currentPage === "projects.html"
-        ){
+        if (currentPage === "projects.html") {
 
             const projectsLink =
                 document.querySelector(
@@ -248,11 +271,9 @@
                 );
 
 
-            if(projectsLink){
+            if (projectsLink) {
 
-                projectsLink.classList.add(
-                    "active"
-                );
+                projectsLink.classList.add("active");
 
                 projectsLink.setAttribute(
                     "aria-current",
@@ -262,40 +283,28 @@
             }
 
             return;
-
         }
 
 
         /* =================================================
-           ABOUT US
+           ABOUT
         ================================================= */
 
-        if(
+        if (
             currentPage === "about.html" ||
             currentPage === "about-us.html"
-        ){
+        ) {
 
-            let aboutLink =
+            const aboutLink =
                 document.querySelector(
-                    'a[href="about.html"]'
+                    'a[href="about.html"], ' +
+                    'a[href="about-us.html"]'
                 );
 
 
-            if(!aboutLink){
+            if (aboutLink) {
 
-                aboutLink =
-                    document.querySelector(
-                        'a[href="about-us.html"]'
-                    );
-
-            }
-
-
-            if(aboutLink){
-
-                aboutLink.classList.add(
-                    "active"
-                );
+                aboutLink.classList.add("active");
 
                 aboutLink.setAttribute(
                     "aria-current",
@@ -305,7 +314,6 @@
             }
 
             return;
-
         }
 
 
@@ -313,21 +321,16 @@
            STRUCTURAL STEEL DETAILING
         ================================================= */
 
-        if(
+        if (
             currentPage ===
             "structural-steel-detailing.html"
-        ){
+        ) {
 
-            if(servicesButton){
+            if (servicesButton) {
 
                 servicesButton.classList.add(
                     "active"
                 );
-
-                /*
-                 * Do NOT force the dropdown open here.
-                 * main.js controls the actual dropdown.
-                 */
 
                 servicesButton.setAttribute(
                     "aria-current",
@@ -337,7 +340,7 @@
             }
 
 
-            if(servicesWrap){
+            if (servicesWrap) {
 
                 servicesWrap.classList.add(
                     "active"
@@ -346,23 +349,14 @@
             }
 
 
-            let structuralSteelLink =
+            const structuralSteelLink =
                 document.querySelector(
-                    '[data-page="structural-steel-detailing.html"]'
+                    '[data-page="structural-steel-detailing.html"], ' +
+                    'a[href="structural-steel-detailing.html"]'
                 );
 
 
-            if(!structuralSteelLink){
-
-                structuralSteelLink =
-                    document.querySelector(
-                        'a[href="structural-steel-detailing.html"]'
-                    );
-
-            }
-
-
-            if(structuralSteelLink){
+            if (structuralSteelLink) {
 
                 structuralSteelLink.classList.add(
                     "active"
@@ -376,7 +370,6 @@
             }
 
             return;
-
         }
 
 
@@ -384,9 +377,7 @@
            HOME
         ================================================= */
 
-        if(
-            currentPage === "index.html"
-        ){
+        if (currentPage === "index.html") {
 
             const homeLink =
                 document.querySelector(
@@ -397,11 +388,9 @@
                 );
 
 
-            if(homeLink){
+            if (homeLink) {
 
-                homeLink.classList.add(
-                    "active"
-                );
+                homeLink.classList.add("active");
 
                 homeLink.setAttribute(
                     "aria-current",
@@ -416,61 +405,33 @@
 
 
     /* =====================================================
-       LOAD COMPONENTS
+       LOAD MAIN JS
     ===================================================== */
 
-    try{
+    function loadMainJS() {
 
-        await Promise.all(
+        /*
+         * Prevent duplicate main.js loading.
+         */
 
-            components.map(
-                ([targetId, file]) =>
-                    loadInto(
-                        targetId,
-                        file
-                    )
-            )
-
-        );
-
-
-        /* =================================================
-           NAVBAR COMPONENT IS NOW READY
-        ================================================= */
-
-        setActiveNavigation();
-
-
-        /* =================================================
-           LOAD MAIN JS ONLY ONCE
-        ================================================= */
-
-        if(
-            !document.querySelector(
+        if (
+            document.querySelector(
                 'script[data-grid-main-js="true"]'
             )
-        ){
+        ) {
+
+            setActiveNavigation();
+
+            return Promise.resolve();
+
+        }
+
+
+        return new Promise(function (resolve) {
 
             const script =
-                document.createElement(
-                    "script"
-                );
+                document.createElement("script");
 
-
-            /*
-             * MAIN JS
-             *
-             * This file contains:
-             * - Mobile menu
-             * - Services dropdown
-             * - Navbar scroll
-             * - Hero slider
-             * - Project slider
-             * - Counters
-             * - Scroll reveal
-             * - AI assistant
-             * - Other main functionality
-             */
 
             script.src =
                 "js/main.js";
@@ -480,30 +441,31 @@
                 "true";
 
 
-            script.onload = function(){
+            script.onload = function () {
 
                 /*
-                 * Navbar has already been injected.
-                 * main.js is now ready.
+                 * Give main.js one browser tick
+                 * to initialize its event listeners.
                  */
 
-                setTimeout(
-                    function(){
+                requestAnimationFrame(function () {
 
-                        setActiveNavigation();
+                    setActiveNavigation();
 
-                    },
-                    50
-                );
+                    resolve();
+
+                });
 
             };
 
 
-            script.onerror = function(){
+            script.onerror = function () {
 
                 console.error(
                     "Grid Detailing: js/main.js could not be loaded."
                 );
+
+                resolve();
 
             };
 
@@ -512,25 +474,124 @@
                 script
             );
 
-        }else{
+        });
+
+    }
+
+
+    /* =====================================================
+       FINISH PAGE
+    ===================================================== */
+
+    function finishComponents() {
+
+        /*
+         * Active navigation one final time.
+         */
+
+        setActiveNavigation();
+
+
+        /*
+         * Components are now available.
+         */
+
+        document.documentElement.classList.remove(
+            "grid-components-loading"
+        );
+
+
+        document.documentElement.classList.add(
+            "grid-components-ready"
+        );
+
+
+        /*
+         * Signal to other scripts if needed.
+         */
+
+        document.dispatchEvent(
+            new CustomEvent(
+                "gridComponentsReady"
+            )
+        );
+
+    }
+
+
+    /* =====================================================
+       INITIALIZATION
+    ===================================================== */
+
+    async function initialize() {
+
+        try {
 
             /*
-             * main.js already exists.
-             * Just refresh active navigation.
+             * Load navbar, footer and floating
+             * components in parallel.
+             */
+
+            await Promise.all(
+                components.map(function (component) {
+
+                    return loadInto(
+                        component[0],
+                        component[1]
+                    );
+
+                })
+            );
+
+
+            /*
+             * Navbar now exists.
              */
 
             setActiveNavigation();
 
+
+            /*
+             * Load main.js only after
+             * components are injected.
+             */
+
+            await loadMainJS();
+
+
+            /*
+             * Final active-state pass.
+             */
+
+            setActiveNavigation();
+
+
+        } catch (error) {
+
+            console.error(
+                "Grid Detailing component loading error:",
+                error
+            );
+
+        } finally {
+
+            /*
+             * NEVER leave the page stuck
+             * in loading state.
+             */
+
+            finishComponents();
+
         }
 
-
-    }catch(error){
-
-        console.error(
-            "Grid Detailing component loading error:",
-            error
-        );
-
     }
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    initialize();
+
 
 })();
