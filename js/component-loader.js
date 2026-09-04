@@ -1,4 +1,12 @@
+/* =========================================================
+   GRID DETAILING
+   COMPONENT LOADER
+   Navbar + Footer + Floating Components
 
+   Stable Loading
+   No Navbar Flash
+   No Duplicate Initialization
+========================================================= */
 
 (async function () {
 
@@ -6,57 +14,14 @@
 
 
     /* =====================================================
-       PREVENT DUPLICATE INITIALIZATION
-    ===================================================== */
-
-    if (
-        window.__GRID_COMPONENT_LOADER_INITIALIZED__
-    ) {
-
-        return;
-
-    }
-
-
-    window.__GRID_COMPONENT_LOADER_INITIALIZED__ =
-        true;
-
-
-    /* =====================================================
        COMPONENT LIST
     ===================================================== */
 
     const components = [
-
-        [
-            "navbar-component",
-            "components/navbar.html"
-        ],
-
-        [
-            "footer-component",
-            "components/footer.html"
-        ],
-
-        [
-            "floating-component",
-            "components/floating.html"
-        ]
-
+        ["navbar-component", "components/navbar.html"],
+        ["footer-component", "components/footer.html"],
+        ["floating-component", "components/floating.html"]
     ];
-
-
-    /* =====================================================
-       COMPONENT LOADING STATE
-       -----------------------------------------------------
-       IMPORTANT:
-       Body ko hide nahi karna.
-       Sirf HTML state maintain karni hai.
-    ===================================================== */
-
-    document.documentElement.classList.add(
-        "grid-components-loading"
-    );
 
 
     /* =====================================================
@@ -65,122 +30,64 @@
 
     function loadCSS(file) {
 
-        return new Promise(
-            function (resolve, reject) {
+        return new Promise((resolve, reject) => {
 
-                const existing =
-                    document.querySelector(
-                        `link[data-grid-component-css="${file}"]`
-                    );
-
-
-                /* =========================================
-                   CSS ALREADY EXISTS
-                ========================================= */
-
-                if (existing) {
-
-                    /*
-                     * Browser may already have loaded it.
-                     */
-
-                    if (
-                        existing.sheet
-                    ) {
-
-                        resolve();
-
-                        return;
-
-                    }
-
-
-                    existing.addEventListener(
-                        "load",
-                        function () {
-
-                            resolve();
-
-                        },
-                        {
-                            once: true
-                        }
-                    );
-
-
-                    existing.addEventListener(
-                        "error",
-                        function () {
-
-                            reject(
-                                new Error(
-                                    `Could not load ${file}`
-                                )
-                            );
-
-                        },
-                        {
-                            once: true
-                        }
-                    );
-
-
-                    return;
-
-                }
-
-
-                /* =========================================
-                   CREATE STYLESHEET
-                ========================================= */
-
-                const link =
-                    document.createElement("link");
-
-
-                link.rel =
-                    "stylesheet";
-
-
-                link.href =
-                    file;
-
-
-                link.dataset.gridComponentCss =
-                    file;
-
-
-                link.onload =
-                    function () {
-
-                        resolve();
-
-                    };
-
-
-                link.onerror =
-                    function () {
-
-                        console.error(
-                            `Grid Detailing: Could not load CSS ${file}`
-                        );
-
-
-                        reject(
-                            new Error(
-                                `Could not load ${file}`
-                            )
-                        );
-
-                    };
-
-
-                document.head.appendChild(
-                    link
+            const existing =
+                document.querySelector(
+                    `link[data-grid-component-css="${file}"]`
                 );
 
+
+            if (existing) {
+
+                /*
+                 * If stylesheet already exists,
+                 * continue immediately.
+                 */
+
+                resolve();
+                return;
+
             }
-        );
+
+
+            const link =
+                document.createElement("link");
+
+
+            link.rel = "stylesheet";
+
+            link.href = file;
+
+            link.dataset.gridComponentCss = file;
+
+
+            link.onload = function () {
+
+                resolve();
+
+            };
+
+
+            link.onerror = function () {
+
+                console.error(
+                    `Grid Detailing: Could not load CSS ${file}`
+                );
+
+
+                reject(
+                    new Error(
+                        `Could not load ${file}`
+                    )
+                );
+
+            };
+
+
+            document.head.appendChild(link);
+
+        });
 
     }
 
@@ -191,127 +98,59 @@
 
     function loadJS(file) {
 
-        return new Promise(
-            function (resolve, reject) {
+        return new Promise((resolve, reject) => {
 
-                const existing =
-                    document.querySelector(
-                        `script[data-grid-component-js="${file}"]`
-                    );
-
-
-                /* =========================================
-                   SCRIPT ALREADY EXISTS
-                ========================================= */
-
-                if (existing) {
-
-                    if (
-                        existing.dataset.loaded ===
-                        "true"
-                    ) {
-
-                        resolve();
-
-                        return;
-
-                    }
-
-
-                    existing.addEventListener(
-                        "load",
-                        function () {
-
-                            resolve();
-
-                        },
-                        {
-                            once: true
-                        }
-                    );
-
-
-                    existing.addEventListener(
-                        "error",
-                        function () {
-
-                            reject(
-                                new Error(
-                                    `Could not load ${file}`
-                                )
-                            );
-
-                        },
-                        {
-                            once: true
-                        }
-                    );
-
-
-                    return;
-
-                }
-
-
-                /* =========================================
-                   CREATE SCRIPT
-                ========================================= */
-
-                const script =
-                    document.createElement("script");
-
-
-                script.src =
-                    file;
-
-
-                script.dataset.gridComponentJs =
-                    file;
-
-
-                /*
-                 * Keep execution order stable.
-                 */
-
-                script.async =
-                    false;
-
-
-                script.onload =
-                    function () {
-
-                        script.dataset.loaded =
-                            "true";
-
-
-                        resolve();
-
-                    };
-
-
-                script.onerror =
-                    function () {
-
-                        console.error(
-                            `Grid Detailing: Could not load JS ${file}`
-                        );
-
-
-                        reject(
-                            new Error(
-                                `Could not load ${file}`
-                            )
-                        );
-
-                    };
-
-
-                document.body.appendChild(
-                    script
+            const existing =
+                document.querySelector(
+                    `script[data-grid-component-js="${file}"]`
                 );
 
+
+            if (existing) {
+
+                resolve();
+                return;
+
             }
-        );
+
+
+            const script =
+                document.createElement("script");
+
+
+            script.src = file;
+
+            script.dataset.gridComponentJs = file;
+
+            script.async = false;
+
+
+            script.onload = function () {
+
+                resolve();
+
+            };
+
+
+            script.onerror = function () {
+
+                console.error(
+                    `Grid Detailing: Could not load JS ${file}`
+                );
+
+
+                reject(
+                    new Error(
+                        `Could not load ${file}`
+                    )
+                );
+
+            };
+
+
+            document.body.appendChild(script);
+
+        });
 
     }
 
@@ -326,21 +165,14 @@
     ) {
 
         const target =
-            document.getElementById(
-                targetId
-            );
+            document.getElementById(targetId);
 
-
-        /* =========================================
-           TARGET NOT FOUND
-        ========================================= */
 
         if (!target) {
 
             console.warn(
                 `Grid Detailing: #${targetId} not found.`
             );
-
 
             return false;
 
@@ -353,18 +185,12 @@
                 await fetch(
                     file,
                     {
-                        cache: "default"
+                        cache: "no-cache"
                     }
                 );
 
 
-            /* =========================================
-               HTTP ERROR
-            ========================================= */
-
-            if (
-                !response.ok
-            ) {
+            if (!response.ok) {
 
                 throw new Error(
                     `${file}: ${response.status}`
@@ -377,12 +203,7 @@
                 await response.text();
 
 
-            /*
-             * Inject component.
-             */
-
-            target.innerHTML =
-                html;
+            target.innerHTML = html;
 
 
             return true;
@@ -395,11 +216,6 @@
                 error
             );
 
-
-            /*
-             * Keep page usable even if
-             * one optional component fails.
-             */
 
             return false;
 
@@ -423,8 +239,7 @@
 
         if (!currentPage) {
 
-            currentPage =
-                "index.html";
+            currentPage = "index.html";
 
         }
 
@@ -437,20 +252,18 @@
             .querySelectorAll(
                 ".grid-nav-item, .grid-service-link"
             )
-            .forEach(
-                function (item) {
+            .forEach(function (item) {
 
-                    item.classList.remove(
-                        "active"
-                    );
+                item.classList.remove(
+                    "active"
+                );
 
 
-                    item.removeAttribute(
-                        "aria-current"
-                    );
+                item.removeAttribute(
+                    "aria-current"
+                );
 
-                }
-            );
+            });
 
 
         /* =================================================
@@ -458,37 +271,14 @@
         ================================================= */
 
         if (
-            currentPage ===
-                "contact-us.html" ||
-            currentPage ===
-                "contact.html"
+            currentPage === "contact-us.html" ||
+            currentPage === "contact.html"
         ) {
 
             const contactLink =
                 document.querySelector(
                     'a[data-page="contact-us.html"]'
                 );
-
-
-            /*
-             * Check whether the user arrived
-             * through GET A QUOTE.
-             */
-
-            const source =
-                sessionStorage.getItem(
-                    "gridNavbarActiveSource"
-                );
-
-
-            if (
-                source ===
-                "quote"
-            ) {
-
-                return;
-
-            }
 
 
             if (contactLink) {
@@ -516,8 +306,7 @@
         ================================================= */
 
         if (
-            currentPage ===
-            "blog.html"
+            currentPage === "blog.html"
         ) {
 
             const blogLink =
@@ -551,8 +340,7 @@
         ================================================= */
 
         if (
-            currentPage ===
-            "projects.html"
+            currentPage === "projects.html"
         ) {
 
             const projectsLink =
@@ -586,10 +374,8 @@
         ================================================= */
 
         if (
-            currentPage ===
-                "about.html" ||
-            currentPage ===
-                "about-us.html"
+            currentPage === "about.html" ||
+            currentPage === "about-us.html"
         ) {
 
             const aboutLink =
@@ -617,42 +403,38 @@
 
         }
 
+/* =================================================
+   HOW WE WORK
+================================================= */
 
-        /* =================================================
-           HOW WE WORK
-        ================================================= */
+if (
+    currentPage === "how-we-work.html"
+) {
 
-        if (
-            currentPage ===
-            "how-we-work.html"
-        ) {
-
-            const howWeWorkLink =
-                document.querySelector(
-                    'a[data-page="how-we-work.html"]'
-                );
+    const howWeWorkLink =
+        document.querySelector(
+            'a[data-page="how-we-work.html"]'
+        );
 
 
-            if (howWeWorkLink) {
+    if (howWeWorkLink) {
 
-                howWeWorkLink.classList.add(
-                    "active"
-                );
-
-
-                howWeWorkLink.setAttribute(
-                    "aria-current",
-                    "page"
-                );
-
-            }
+        howWeWorkLink.classList.add(
+            "active"
+        );
 
 
-            return;
+        howWeWorkLink.setAttribute(
+            "aria-current",
+            "page"
+        );
 
-        }
+    }
 
 
+    return;
+
+}
         /* =================================================
            STRUCTURAL STEEL DETAILING
         ================================================= */
@@ -673,6 +455,15 @@
                     '[data-page="structural-steel-detailing.html"]'
                 );
 
+
+            /*
+             * Services button remains active.
+             *
+             * IMPORTANT:
+             * We DO NOT open the dropdown here.
+             *
+             * User must click Services.
+             */
 
             if (servicesButton) {
 
@@ -708,8 +499,7 @@
         ================================================= */
 
         if (
-            currentPage ===
-            "index.html"
+            currentPage === "index.html"
         ) {
 
             const homeLink =
@@ -738,28 +528,11 @@
 
 
     /* =====================================================
-       MARK COMPONENTS READY
-    ===================================================== */
-
-    function componentsReady() {
-
-        document.documentElement.classList.remove(
-            "grid-components-loading"
-        );
-
-
-        document.documentElement.classList.add(
-            "grid-components-ready"
-        );
-
-    }
-
-
-    /* =====================================================
        MAIN LOADING FLOW
     ===================================================== */
 
     try {
+
 
         /* =================================================
            STEP 1
@@ -773,7 +546,7 @@
 
         /* =================================================
            STEP 2
-           LOAD HTML COMPONENTS
+           LOAD COMPONENT HTML
         ================================================= */
 
         await Promise.all(
@@ -804,7 +577,7 @@
 
         /* =================================================
            STEP 4
-           ACTIVE NAVIGATION
+           SET ACTIVE NAVIGATION
         ================================================= */
 
         setActiveNavigation();
@@ -829,11 +602,12 @@
 
 
         /* =================================================
-           STEP 7
            COMPONENTS READY
         ================================================= */
 
-        componentsReady();
+        document.documentElement.classList.add(
+            "grid-components-ready"
+        );
 
 
     } catch (error) {
@@ -842,15 +616,6 @@
             "Grid Detailing component loading error:",
             error
         );
-
-
-        /*
-         * IMPORTANT:
-         * Never leave the website in a
-         * blocked/hidden state.
-         */
-
-        componentsReady();
 
     }
 
