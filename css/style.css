@@ -3212,38 +3212,3 @@ a:focus-visible{
         }
 
 
-/* =========================================================
-   GRID COMPONENT FLASH PROTECTION
-========================================================= */
-
-#navbar-component,
-#footer-component,
-#floating-component{
-    visibility:hidden;
-}
-
-#navbar-component.grid-component-loaded,
-#footer-component.grid-component-loaded,
-#floating-component.grid-component-loaded{
-    visibility:visible;
-}
-
-
-/* =========================================================
-   PAGE BACKGROUND — GITHUB SAFE
-========================================================= */
-
-html,
-body{
-    background:#ffffff;
-}
-
-
-/* Navbar component should appear immediately
-   after it has been injected */
-
-.grid-components-ready #navbar-component,
-.grid-components-ready #footer-component,
-.grid-components-ready #floating-component{
-    visibility:visible;
-}
