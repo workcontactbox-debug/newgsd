@@ -1,0 +1,4908 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Structural Steel Detailing | Grid Steel Detailing</title>
+
+<meta name="description"
+content="Complete structural steel detailing and BIM documentation for fabrication and erection by Grid Steel Detailing.">
+
+<style>
+
+/* =========================================================
+   GRID STEEL DETAILING
+   PREMIUM STRUCTURAL STEEL DETAILING PAGE
+   SINGLE FILE
+========================================================= */
+
+:root{
+    --navy:#0F2339;
+    --navy-2:#122B44;
+    --navy-3:#071522;
+    --navy-4:#091B2C;
+
+    --orange:#F26A09;
+    --orange-dark:#D95700;
+    --orange-light:#FF8A3D;
+
+    --white:#FFFFFF;
+    --off:#F5F7F9;
+    --off-2:#EEF2F5;
+
+    --text:#152536;
+    --muted:#687786;
+    --muted-2:#8A98A5;
+
+    --line:#DCE3E8;
+    --line-dark:rgba(255,255,255,.12);
+
+    --shadow:0 20px 55px rgba(15,35,57,.10);
+    --shadow-heavy:0 35px 90px rgba(7,21,34,.20);
+
+    --container:1400px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:35px;
+}
+
+body{
+    margin:0;
+    color:var(--text);
+    background:#fff;
+
+    font-family:
+        Inter,
+        "DM Sans",
+        Manrope,
+        Arial,
+        sans-serif;
+
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+
+    overflow-x:hidden;
+}
+
+img{
+    display:block;
+    width:100%;
+    max-width:100%;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font:inherit;
+}
+
+.container{
+    width:min(calc(100% - 80px),var(--container));
+    margin:auto;
+}
+
+.section{
+    padding:115px 0;
+}
+
+.eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:var(--orange);
+
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+}
+
+.eyebrow::before{
+    content:"";
+    width:30px;
+    height:2px;
+    background:var(--orange);
+}
+
+.section-title{
+    margin-top:16px;
+
+    font-size:clamp(40px,5vw,70px);
+    line-height:.98;
+    letter-spacing:-.055em;
+    font-weight:850;
+}
+
+.section-intro{
+    max-width:720px;
+    margin-top:22px;
+
+    color:var(--muted);
+
+    font-size:16px;
+    line-height:1.85;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    position:relative;
+    min-height:485px;
+
+    display:flex;
+    align-items:center;
+
+    background:
+        linear-gradient(
+            105deg,
+            #071522 0%,
+            #0F2339 53%,
+            #173650 100%
+        );
+
+    color:#fff;
+    overflow:hidden;
+    isolation:isolate;
+}
+
+.hero-grid{
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.055) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.055) 1px,
+            transparent 1px
+        );
+
+    background-size:52px 52px;
+
+    opacity:.65;
+
+    mask-image:
+        linear-gradient(
+            90deg,
+            black 0%,
+            black 45%,
+            transparent 100%
+        );
+
+    z-index:-2;
+}
+
+.hero-glow{
+    position:absolute;
+
+    width:620px;
+    height:620px;
+
+    right:-230px;
+    top:-260px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(242,106,9,.17),
+            transparent 68%
+        );
+
+    z-index:-1;
+}
+
+.hero-line{
+    position:absolute;
+
+    width:420px;
+    height:1px;
+
+    right:8%;
+    top:28%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(242,106,9,.9),
+            transparent
+        );
+
+    transform:rotate(-25deg);
+
+    opacity:.55;
+}
+
+.hero-inner{
+    width:min(calc(100% - 80px),var(--container));
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 450px;
+    gap:80px;
+    align-items:center;
+
+    padding:54px 0 58px;
+}
+
+.hero-copy{
+    max-width:900px;
+}
+
+.hero-kicker{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    color:#C2CDD6;
+
+    font-size:11px;
+    font-weight:850;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+}
+
+.hero-kicker i{
+    width:35px;
+    height:2px;
+    background:var(--orange);
+}
+
+.hero h1{
+    margin-top:17px;
+
+    font-size:clamp(49px,6vw,86px);
+    line-height:.91;
+    letter-spacing:-.065em;
+    font-weight:900;
+}
+
+.hero h1 span{
+    color:var(--orange);
+}
+
+.hero-text{
+    max-width:750px;
+
+    margin-top:25px;
+
+    color:#B9C5CE;
+
+    font-size:16px;
+    line-height:1.8;
+}
+
+.hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+
+    margin-top:30px;
+}
+
+.btn{
+    min-height:47px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+
+    padding:0 21px;
+
+    border-radius:6px;
+
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+
+    transition:.25s ease;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.btn-orange{
+    color:#fff;
+    background:var(--orange);
+}
+
+.btn-orange:hover{
+    background:var(--orange-dark);
+}
+
+.btn-glass{
+    color:#fff;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.045);
+}
+
+.btn-glass:hover{
+    border-color:rgba(255,255,255,.45);
+    background:rgba(255,255,255,.08);
+}
+
+
+/* Hero visual */
+
+.hero-visual{
+    position:relative;
+
+    height:320px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    background:#0A1B2B;
+
+    box-shadow:var(--shadow-heavy);
+}
+
+.hero-visual img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+    opacity:.72;
+
+    filter:
+        contrast(1.08)
+        saturate(.75);
+}
+
+.hero-visual::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(7,21,34,.12),
+            rgba(7,21,34,.7)
+        );
+}
+
+.hero-tech{
+    position:absolute;
+    z-index:2;
+
+    left:20px;
+    right:20px;
+    bottom:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+}
+
+.hero-tech-label{
+    padding:11px 13px;
+
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:7px;
+
+    background:rgba(7,21,34,.72);
+    backdrop-filter:blur(12px);
+
+    color:#fff;
+
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+}
+
+.hero-tech-number{
+    color:rgba(255,255,255,.22);
+
+    font-size:55px;
+    line-height:.8;
+    font-weight:900;
+}
+
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services{
+    background:#fff;
+}
+
+.services-heading{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:40px;
+
+    margin-bottom:55px;
+}
+
+.services-heading .section-intro{
+    max-width:510px;
+    margin:0;
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(12,1fr);
+
+    gap:18px;
+}
+
+.service-card{
+    position:relative;
+
+    grid-column:span 3;
+
+    min-height:410px;
+
+    overflow:hidden;
+
+    border:1px solid var(--line);
+    border-radius:13px;
+
+    background:#fff;
+
+    transition:.35s ease;
+}
+
+.service-card:hover{
+    transform:translateY(-7px);
+    box-shadow:var(--shadow);
+    border-color:#C7D1D9;
+}
+
+.service-image{
+    position:relative;
+
+    height:235px;
+
+    overflow:hidden;
+
+    background:var(--navy);
+}
+
+.service-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+    transition:
+        transform .6s ease,
+        filter .4s ease;
+}
+
+.service-card:hover .service-image img{
+    transform:scale(1.06);
+}
+
+.service-image::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 35%,
+            rgba(7,21,34,.48)
+        );
+}
+
+.service-index{
+    position:absolute;
+    z-index:2;
+
+    top:14px;
+    left:14px;
+
+    padding:7px 9px;
+
+    color:#fff;
+
+    background:rgba(7,21,34,.76);
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:5px;
+
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:.12em;
+}
+
+.service-body{
+    padding:23px;
+}
+
+.service-category{
+    color:var(--orange);
+
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+}
+
+.service-body h3{
+    margin-top:8px;
+
+    font-size:21px;
+    line-height:1.1;
+    letter-spacing:-.035em;
+}
+
+.service-body p{
+    margin-top:9px;
+
+    color:var(--muted);
+
+    font-size:12px;
+    line-height:1.65;
+}
+
+.service-read{
+    display:inline-flex;
+    gap:8px;
+    align-items:center;
+
+    margin-top:16px;
+
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.service-read span{
+    color:var(--orange);
+}
+
+
+/* =========================================================
+   TOPIC EXPLORER
+========================================================= */
+
+.explorer{
+    background:var(--off);
+}
+
+.explorer-layout{
+    display:grid;
+    grid-template-columns:255px minmax(0,1fr);
+    gap:55px;
+    align-items:start;
+}
+
+.sidebar{
+    position:sticky;
+    top:25px;
+}
+
+.sidebar-heading{
+    margin-bottom:17px;
+
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+}
+
+.topic-list{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+.topic{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:11px 12px;
+
+    color:#72808D;
+
+    border-radius:6px;
+
+    font-size:11px;
+    font-weight:750;
+
+    transition:.2s ease;
+}
+
+.topic::before{
+    content:"";
+
+    width:5px;
+    height:5px;
+
+    flex:none;
+
+    border-radius:50%;
+
+    background:#BBC4CB;
+}
+
+.topic:hover{
+    color:var(--navy);
+    background:#fff;
+}
+
+.topic.active{
+    color:var(--navy);
+    background:#fff;
+
+    box-shadow:0 7px 22px rgba(15,35,57,.07);
+}
+
+.topic.active::before{
+    background:var(--orange);
+}
+
+.progress{
+    margin-top:25px;
+
+    padding:17px;
+
+    color:#fff;
+
+    background:var(--navy);
+    border-radius:9px;
+}
+
+.progress-row{
+    display:flex;
+    justify-content:space-between;
+
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+}
+
+.progress-track{
+    height:4px;
+
+    margin-top:10px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.14);
+    border-radius:20px;
+}
+
+.progress-fill{
+    width:0;
+    height:100%;
+
+    background:var(--orange);
+
+    transition:width .2s ease;
+}
+
+
+/* =========================================================
+   TOPIC 01
+   EDITORIAL / SPLIT
+========================================================= */
+
+.topic-detail{
+    scroll-margin-top:30px;
+}
+
+.detail-editorial{
+    display:grid;
+    grid-template-columns:
+        minmax(0,1.05fr)
+        minmax(330px,.75fr);
+
+    gap:0;
+
+    overflow:hidden;
+
+    background:#fff;
+
+    border:1px solid var(--line);
+    border-radius:20px;
+
+    box-shadow:0 15px 45px rgba(15,35,57,.06);
+}
+
+.editorial-image{
+    min-height:570px;
+
+    overflow:hidden;
+
+    background:var(--navy);
+}
+
+.editorial-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+}
+
+.editorial-content{
+    padding:53px 45px;
+}
+
+.detail-label{
+    color:var(--orange);
+
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+}
+
+.detail-title{
+    margin-top:12px;
+
+    font-size:clamp(34px,3.4vw,52px);
+    line-height:.98;
+    letter-spacing:-.05em;
+}
+
+.detail-copy{
+    margin-top:20px;
+
+    color:var(--muted);
+
+    font-size:14px;
+    line-height:1.85;
+}
+
+.feature-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:1px;
+
+    margin-top:32px;
+
+    overflow:hidden;
+
+    border:1px solid var(--line);
+    border-radius:9px;
+}
+
+.feature{
+    min-height:125px;
+
+    padding:18px;
+
+    background:#FAFBFC;
+}
+
+.feature:nth-child(odd){
+    border-right:1px solid var(--line);
+}
+
+.feature:nth-child(-n+4){
+    border-bottom:1px solid var(--line);
+}
+
+.feature-number{
+    color:var(--orange);
+
+    font-size:9px;
+    font-weight:900;
+}
+
+.feature h4{
+    margin-top:8px;
+
+    font-size:12px;
+    line-height:1.3;
+}
+
+.feature p{
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:10px;
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   TOPIC 02
+   BIM / LARGE VISUAL + DATA
+========================================================= */
+
+.bim-block{
+    padding:38px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FDFEFE,
+            #EEF3F6
+        );
+
+    border:1px solid var(--line);
+    border-radius:20px;
+}
+
+.bim-header{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    align-items:flex-end;
+
+    margin-bottom:28px;
+}
+
+.bim-header h2{
+    margin-top:10px;
+
+    font-size:clamp(34px,3.5vw,52px);
+    line-height:1;
+    letter-spacing:-.05em;
+}
+
+.bim-header p{
+    max-width:460px;
+
+    color:var(--muted);
+
+    font-size:13px;
+    line-height:1.75;
+}
+
+.bim-visual{
+    position:relative;
+
+    height:480px;
+
+    overflow:hidden;
+
+    border-radius:14px;
+
+    background:var(--navy);
+}
+
+.bim-visual img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+    opacity:.78;
+}
+
+.bim-visual::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7,21,34,.65),
+            transparent 60%
+        );
+}
+
+.bim-data{
+    position:absolute;
+    z-index:2;
+
+    left:24px;
+    top:24px;
+
+    width:230px;
+
+    padding:18px;
+
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:10px;
+
+    background:rgba(7,21,34,.72);
+    backdrop-filter:blur(13px);
+}
+
+.bim-data-title{
+    color:var(--orange);
+
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+}
+
+.bim-data-line{
+    display:flex;
+    justify-content:space-between;
+
+    padding:11px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.09);
+
+    font-size:10px;
+}
+
+.bim-data-line:last-child{
+    border-bottom:0;
+}
+
+.bim-data-line span:last-child{
+    color:#C3CED6;
+}
+
+.bim-points{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:10px;
+
+    margin-top:14px;
+}
+
+.bim-point{
+    padding:18px;
+
+    border:1px solid var(--line);
+    border-radius:9px;
+
+    background:#fff;
+}
+
+.bim-point strong{
+    display:block;
+
+    color:var(--orange);
+
+    font-size:10px;
+}
+
+.bim-point h4{
+    margin-top:6px;
+
+    font-size:12px;
+}
+
+.bim-point p{
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:10px;
+}
+
+
+/* =========================================================
+   TOPIC 03
+   ANCHOR / TECHNICAL BLUEPRINT
+========================================================= */
+
+.anchor-block{
+    position:relative;
+
+    padding:45px;
+
+    overflow:hidden;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #091A2A,
+            #0F2942
+        );
+
+    border-radius:20px;
+}
+
+.anchor-block::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    opacity:.12;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+
+    background-size:30px 30px;
+}
+
+.anchor-content{
+    position:relative;
+    z-index:1;
+}
+
+.anchor-top{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    align-items:flex-start;
+}
+
+.anchor-top h2{
+    margin-top:10px;
+
+    max-width:700px;
+
+    font-size:clamp(34px,3.7vw,55px);
+    line-height:.98;
+    letter-spacing:-.05em;
+}
+
+.anchor-top p{
+    max-width:410px;
+
+    color:#AAB9C5;
+
+    font-size:13px;
+    line-height:1.8;
+}
+
+.blueprint{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:16px;
+
+    margin-top:40px;
+}
+
+.blueprint-image{
+    min-height:430px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;
+
+    background:#0A1B2B;
+}
+
+.blueprint-image img{
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+    opacity:.76;
+}
+
+.blueprint-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:9px;
+}
+
+.blueprint-card{
+    padding:19px;
+
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:9px;
+
+    background:rgba(255,255,255,.045);
+}
+
+.blueprint-card span{
+    color:var(--orange);
+
+    font-size:10px;
+    font-weight:900;
+}
+
+.blueprint-card h4{
+    margin-top:9px;
+
+    font-size:13px;
+}
+
+.blueprint-card p{
+    margin-top:6px;
+
+    color:#9EAFBC;
+
+    font-size:10px;
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   TOPIC 04
+   CONNECTION / ASYMMETRIC
+========================================================= */
+
+.connection-block{
+    display:grid;
+    grid-template-columns:330px minmax(0,1fr);
+
+    gap:20px;
+}
+
+.connection-intro{
+    padding:38px;
+
+    color:#fff;
+
+    background:var(--navy);
+
+    border-radius:18px;
+}
+
+.connection-intro h2{
+    margin-top:12px;
+
+    font-size:42px;
+    line-height:.98;
+    letter-spacing:-.05em;
+}
+
+.connection-intro p{
+    margin-top:19px;
+
+    color:#AAB9C5;
+
+    font-size:13px;
+    line-height:1.8;
+}
+
+.connection-mark{
+    margin-top:65px;
+
+    color:rgba(255,255,255,.08);
+
+    font-size:110px;
+    line-height:.7;
+    font-weight:900;
+}
+
+.connection-matrix{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+}
+
+.connection-card{
+    position:relative;
+
+    min-height:190px;
+
+    padding:25px;
+
+    border:1px solid var(--line);
+    border-radius:12px;
+
+    background:#fff;
+
+    overflow:hidden;
+
+    transition:.3s ease;
+}
+
+.connection-card:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow);
+}
+
+.connection-card::after{
+    content:"";
+
+    position:absolute;
+
+    width:90px;
+    height:90px;
+
+    right:-35px;
+    bottom:-35px;
+
+    border:1px solid rgba(242,106,9,.18);
+    border-radius:50%;
+}
+
+.connection-icon{
+    color:var(--orange);
+
+    font-size:19px;
+    font-weight:900;
+}
+
+.connection-card h3{
+    margin-top:14px;
+
+    font-size:16px;
+    line-height:1.2;
+}
+
+.connection-card p{
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:11px;
+    line-height:1.65;
+}
+
+
+/* =========================================================
+   TOPIC 05
+   SHOP DRAWINGS / DRAWING SHEET
+========================================================= */
+
+.shop-block{
+    padding:40px;
+
+    background:#EDEFF1;
+
+    border-radius:20px;
+
+    border:1px solid #D7DDE2;
+}
+
+.shop-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:30px;
+
+    margin-bottom:30px;
+}
+
+.shop-head h2{
+    margin-top:11px;
+
+    font-size:clamp(34px,3.7vw,55px);
+    line-height:.98;
+    letter-spacing:-.05em;
+}
+
+.shop-head p{
+    max-width:430px;
+
+    color:var(--muted);
+
+    font-size:13px;
+    line-height:1.75;
+}
+
+.drawing-board{
+    display:grid;
+    grid-template-columns:
+        minmax(0,1.5fr)
+        minmax(260px,.7fr);
+
+    gap:14px;
+}
+
+.drawing-image{
+    position:relative;
+
+    min-height:470px;
+
+    overflow:hidden;
+
+    background:#fff;
+
+    border:1px solid #CBD2D8;
+    border-radius:10px;
+}
+
+.drawing-image img{
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+}
+
+.drawing-stamp{
+    position:absolute;
+
+    right:18px;
+    top:18px;
+
+    padding:9px 11px;
+
+    border:2px solid var(--orange);
+
+    color:var(--orange);
+
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+
+    transform:rotate(-4deg);
+}
+
+.drawing-specs{
+    display:flex;
+    flex-direction:column;
+
+    border:1px solid #CBD2D8;
+    border-radius:10px;
+
+    overflow:hidden;
+
+    background:#fff;
+}
+
+.spec-head{
+    padding:18px;
+
+    color:#fff;
+
+    background:var(--navy);
+
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+.spec-row{
+    flex:1;
+
+    padding:17px;
+
+    border-bottom:1px solid #E1E5E8;
+}
+
+.spec-row:last-child{
+    border-bottom:0;
+}
+
+.spec-row span{
+    color:var(--orange);
+
+    font-size:9px;
+    font-weight:900;
+}
+
+.spec-row h4{
+    margin-top:5px;
+
+    font-size:12px;
+}
+
+.spec-row p{
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:10px;
+}
+
+
+/* =========================================================
+   TOPIC 06
+   ERECTION / FIELD
+========================================================= */
+
+.erection-block{
+    position:relative;
+
+    min-height:570px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:var(--navy);
+}
+
+.erection-image{
+    position:absolute;
+    inset:0;
+}
+
+.erection-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+    opacity:.55;
+}
+
+.erection-overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7,21,34,.98) 0%,
+            rgba(7,21,34,.78) 43%,
+            rgba(7,21,34,.22) 100%
+        );
+}
+
+.erection-content{
+    position:relative;
+    z-index:2;
+
+    width:65%;
+
+    padding:65px;
+}
+
+.erection-content h2{
+    margin-top:13px;
+
+    font-size:clamp(38px,4.5vw,64px);
+    line-height:.96;
+    letter-spacing:-.055em;
+    color:#fff;
+}
+
+.erection-content > p{
+    max-width:620px;
+
+    margin-top:20px;
+
+    color:#B2C0CB;
+
+    font-size:14px;
+    line-height:1.8;
+}
+
+.erection-points{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:8px;
+
+    max-width:650px;
+
+    margin-top:32px;
+}
+
+.erection-point{
+    padding:14px 16px;
+
+    border:1px solid rgba(255,255,255,.11);
+    border-radius:7px;
+
+    background:rgba(255,255,255,.045);
+
+    color:#fff;
+
+    font-size:11px;
+}
+
+.erection-point span{
+    margin-right:7px;
+    color:var(--orange);
+}
+
+
+/* =========================================================
+   TOPIC 07
+   NC / CNC / MACHINE DATA
+========================================================= */
+
+.machine-block{
+    padding:0;
+
+    overflow:hidden;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #050F18,
+            #0B1E30
+        );
+
+    border-radius:20px;
+
+    border:1px solid #17344D;
+}
+
+.machine-top{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    min-height:400px;
+}
+
+.machine-copy{
+    padding:50px;
+}
+
+.machine-copy h2{
+    margin-top:13px;
+
+    font-size:clamp(38px,4vw,58px);
+    line-height:.95;
+    letter-spacing:-.055em;
+}
+
+.machine-copy p{
+    margin-top:20px;
+
+    color:#A7B6C2;
+
+    font-size:13px;
+    line-height:1.8;
+}
+
+.machine-visual{
+    position:relative;
+
+    min-height:400px;
+
+    overflow:hidden;
+}
+
+.machine-visual img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+    opacity:.45;
+}
+
+.machine-terminal{
+    position:absolute;
+    inset:30px;
+
+    padding:20px;
+
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:9px;
+
+    background:rgba(4,13,21,.73);
+    backdrop-filter:blur(8px);
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size:10px;
+    line-height:2;
+
+    color:#AFC1CD;
+}
+
+.machine-terminal strong{
+    color:var(--orange);
+}
+
+.machine-data-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    border-top:1px solid rgba(255,255,255,.1);
+}
+
+.machine-data{
+    padding:22px;
+
+    border-right:1px solid rgba(255,255,255,.1);
+}
+
+.machine-data:last-child{
+    border-right:0;
+}
+
+.machine-data span{
+    color:var(--orange);
+
+    font-size:9px;
+    font-weight:900;
+}
+
+.machine-data h4{
+    margin-top:7px;
+
+    font-size:12px;
+}
+
+.machine-data p{
+    margin-top:4px;
+
+    color:#8295A3;
+
+    font-size:10px;
+}
+
+
+/* =========================================================
+   WORKFLOW
+========================================================= */
+
+.workflow{
+    background:#fff;
+}
+
+.workflow-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+
+    margin-bottom:50px;
+}
+
+.workflow-header p{
+    max-width:500px;
+
+    color:var(--muted);
+
+    font-size:14px;
+    line-height:1.8;
+}
+
+.workflow-line{
+    position:relative;
+
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+
+    border-top:1px solid var(--line);
+}
+
+.workflow-step{
+    position:relative;
+
+    padding:35px 18px 15px;
+
+    border-right:1px solid var(--line);
+}
+
+.workflow-step:last-child{
+    border-right:0;
+}
+
+.workflow-dot{
+    position:absolute;
+
+    top:-7px;
+    left:18px;
+
+    width:13px;
+    height:13px;
+
+    border-radius:50%;
+
+    background:var(--orange);
+
+    box-shadow:0 0 0 6px #fff;
+}
+
+.workflow-number{
+    color:var(--orange);
+
+    font-size:10px;
+    font-weight:900;
+}
+
+.workflow-step h3{
+    margin-top:28px;
+
+    font-size:17px;
+    line-height:1.1;
+}
+
+.workflow-step p{
+    margin-top:10px;
+
+    color:var(--muted);
+
+    font-size:10px;
+    line-height:1.65;
+}
+
+
+/* =========================================================
+   ACCURACY
+========================================================= */
+
+.accuracy{
+    background:var(--navy-3);
+    color:#fff;
+}
+
+.accuracy-layout{
+    display:grid;
+    grid-template-columns:
+        minmax(300px,.8fr)
+        minmax(0,1.2fr);
+
+    gap:70px;
+    align-items:center;
+}
+
+.accuracy-visual{
+    position:relative;
+
+    height:580px;
+
+    overflow:hidden;
+
+    border-radius:18px;
+}
+
+.accuracy-visual img{
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+}
+
+.accuracy-visual::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 45%,
+            rgba(5,15,24,.8)
+        );
+}
+
+.accuracy-badge{
+    position:absolute;
+    z-index:2;
+
+    left:20px;
+    bottom:20px;
+
+    padding:15px 18px;
+
+    background:rgba(7,21,34,.8);
+    border:1px solid rgba(255,255,255,.13);
+    backdrop-filter:blur(12px);
+
+    border-radius:8px;
+}
+
+.accuracy-badge strong{
+    display:block;
+
+    color:var(--orange);
+
+    font-size:9px;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+}
+
+.accuracy-badge span{
+    display:block;
+
+    margin-top:5px;
+
+    font-size:12px;
+}
+
+.accuracy-copy .section-title{
+    max-width:700px;
+}
+
+.accuracy-copy > p{
+    max-width:680px;
+
+    margin-top:22px;
+
+    color:#AAB8C3;
+
+    font-size:14px;
+    line-height:1.85;
+}
+
+.accuracy-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:9px;
+
+    margin-top:32px;
+}
+
+.accuracy-item{
+    padding:19px;
+
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:9px;
+
+    background:rgba(255,255,255,.035);
+}
+
+.accuracy-item span{
+    color:var(--orange);
+
+    font-size:9px;
+    font-weight:900;
+}
+
+.accuracy-item h4{
+    margin-top:8px;
+
+    font-size:13px;
+}
+
+.accuracy-item p{
+    margin-top:5px;
+
+    color:#81919E;
+
+    font-size:10px;
+    line-height:1.55;
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq{
+    background:var(--off);
+}
+
+.faq-layout{
+    display:grid;
+    grid-template-columns:340px minmax(0,1fr);
+    gap:80px;
+}
+
+.faq-side p{
+    margin-top:20px;
+
+    color:var(--muted);
+
+    font-size:13px;
+    line-height:1.8;
+}
+
+.faq-list{
+    border-top:1px solid var(--line);
+}
+
+.faq-item{
+    border-bottom:1px solid var(--line);
+}
+
+.faq-question{
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+
+    padding:22px 0;
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--navy);
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font-size:14px;
+    font-weight:850;
+}
+
+.faq-icon{
+    flex:none;
+
+    width:30px;
+    height:30px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid #CBD4DB;
+    border-radius:50%;
+
+    color:var(--orange);
+
+    font-size:18px;
+
+    transition:.25s ease;
+}
+
+.faq-answer{
+    display:grid;
+    grid-template-rows:0fr;
+
+    transition:grid-template-rows .3s ease;
+}
+
+.faq-inner{
+    overflow:hidden;
+}
+
+.faq-inner p{
+    padding:0 55px 23px 0;
+
+    color:var(--muted);
+
+    font-size:13px;
+    line-height:1.8;
+}
+
+.faq-item.open .faq-answer{
+    grid-template-rows:1fr;
+}
+
+.faq-item.open .faq-icon{
+    transform:rotate(45deg);
+
+    color:#fff;
+    background:var(--orange);
+    border-color:var(--orange);
+}
+
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.cta{
+    position:relative;
+
+    padding:100px 0;
+
+    overflow:hidden;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            110deg,
+            #071522,
+            #102B45
+        );
+}
+
+.cta::before{
+    content:"";
+
+    position:absolute;
+
+    width:650px;
+    height:650px;
+
+    right:-300px;
+    top:-300px;
+
+    border-radius:50%;
+
+    border:100px solid rgba(242,106,9,.06);
+}
+
+.cta-inner{
+    position:relative;
+    z-index:2;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:50px;
+}
+
+.cta h2{
+    margin-top:14px;
+
+    max-width:800px;
+
+    font-size:clamp(40px,5vw,68px);
+    line-height:.96;
+    letter-spacing:-.055em;
+}
+
+.cta p{
+    max-width:680px;
+
+    margin-top:18px;
+
+    color:#AEBCC7;
+
+    font-size:14px;
+    line-height:1.8;
+}
+
+
+/* =========================================================
+   BACK TOP
+========================================================= */
+
+.back-top{
+    position:fixed;
+
+    right:24px;
+    bottom:24px;
+
+    width:43px;
+    height:43px;
+
+    display:grid;
+    place-items:center;
+
+    border:0;
+    border-radius:7px;
+
+    background:var(--orange);
+    color:#fff;
+
+    cursor:pointer;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(10px);
+
+    transition:.25s ease;
+
+    z-index:100;
+}
+
+.back-top.show{
+    opacity:1;
+    visibility:visible;
+    transform:none;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    .container,
+    .hero-inner{
+        width:min(calc(100% - 50px),var(--container));
+    }
+
+    .hero-inner{
+        grid-template-columns:1fr 370px;
+        gap:45px;
+    }
+
+    .service-card{
+        grid-column:span 4;
+    }
+
+    .explorer-layout{
+        gap:35px;
+    }
+
+    .accuracy-layout{
+        gap:45px;
+    }
+
+}
+
+
+@media(max-width:950px){
+
+    .section{
+        padding:85px 0;
+    }
+
+    .hero-inner{
+        grid-template-columns:1fr;
+        padding:55px 0 60px;
+    }
+
+    .hero-visual{
+        max-width:600px;
+        height:300px;
+    }
+
+    .service-card{
+        grid-column:span 6;
+    }
+
+    .explorer-layout{
+        grid-template-columns:1fr;
+    }
+
+    .sidebar{
+        position:relative;
+        top:auto;
+    }
+
+    .topic-list{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .detail-editorial{
+        grid-template-columns:1fr;
+    }
+
+    .editorial-image{
+        min-height:420px;
+    }
+
+    .bim-header,
+    .shop-head,
+    .workflow-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .bim-points{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .connection-block{
+        grid-template-columns:1fr;
+    }
+
+    .connection-mark{
+        display:none;
+    }
+
+    .erection-content{
+        width:80%;
+        padding:50px;
+    }
+
+    .machine-top{
+        grid-template-columns:1fr;
+    }
+
+    .machine-visual{
+        min-height:350px;
+    }
+
+    .machine-data-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .machine-data:nth-child(2){
+        border-right:0;
+    }
+
+    .workflow-line{
+        grid-template-columns:repeat(3,1fr);
+        border-top:0;
+    }
+
+    .workflow-step{
+        border-top:1px solid var(--line);
+        border-right:1px solid var(--line);
+    }
+
+    .workflow-step:nth-child(3n){
+        border-right:0;
+    }
+
+    .workflow-dot{
+        top:-7px;
+    }
+
+    .accuracy-layout{
+        grid-template-columns:1fr;
+    }
+
+    .accuracy-visual{
+        height:430px;
+    }
+
+    .faq-layout{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    .container,
+    .hero-inner{
+        width:calc(100% - 32px);
+    }
+
+    .section{
+        padding:65px 0;
+    }
+
+    .hero{
+        min-height:auto;
+    }
+
+    .hero-inner{
+        padding:45px 0 50px;
+        gap:32px;
+    }
+
+    .hero h1{
+        font-size:47px;
+    }
+
+    .hero-text{
+        font-size:14px;
+    }
+
+    .hero-actions{
+        flex-direction:column;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .hero-visual{
+        height:235px;
+    }
+
+    .services-heading{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .service-grid{
+        display:grid;
+        grid-template-columns:1fr;
+    }
+
+    .service-card{
+        grid-column:auto;
+    }
+
+    .service-image{
+        height:230px;
+    }
+
+    .topic-list{
+        grid-template-columns:1fr;
+    }
+
+    .detail-editorial,
+    .bim-block,
+    .anchor-block,
+    .shop-block,
+    .machine-block{
+        border-radius:14px;
+    }
+
+    .editorial-content{
+        padding:32px 23px;
+    }
+
+    .editorial-image{
+        min-height:280px;
+    }
+
+    .feature-list{
+        grid-template-columns:1fr;
+    }
+
+    .feature:nth-child(odd){
+        border-right:0;
+    }
+
+    .feature:nth-child(-n+4){
+        border-bottom:0;
+    }
+
+    .feature{
+        border-bottom:1px solid var(--line) !important;
+    }
+
+    .feature:last-child{
+        border-bottom:0 !important;
+    }
+
+    .bim-block{
+        padding:23px;
+    }
+
+    .bim-visual{
+        height:280px;
+    }
+
+    .bim-data{
+        width:calc(100% - 30px);
+        left:15px;
+        top:15px;
+    }
+
+    .bim-points{
+        grid-template-columns:1fr;
+    }
+
+    .anchor-block{
+        padding:30px 22px;
+    }
+
+    .anchor-top{
+        flex-direction:column;
+    }
+
+    .blueprint{
+        grid-template-columns:1fr;
+    }
+
+    .blueprint-image{
+        min-height:280px;
+    }
+
+    .blueprint-info{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .connection-matrix{
+        grid-template-columns:1fr;
+    }
+
+    .connection-intro{
+        padding:30px;
+    }
+
+    .shop-block{
+        padding:24px;
+    }
+
+    .drawing-board{
+        grid-template-columns:1fr;
+    }
+
+    .drawing-image{
+        min-height:300px;
+    }
+
+    .drawing-specs{
+        min-height:500px;
+    }
+
+    .erection-block{
+        min-height:620px;
+    }
+
+    .erection-overlay{
+        background:
+            linear-gradient(
+                180deg,
+                rgba(7,21,34,.45),
+                rgba(7,21,34,.97) 75%
+            );
+    }
+
+    .erection-content{
+        width:100%;
+        padding:32px 23px;
+        padding-top:270px;
+    }
+
+    .erection-points{
+        grid-template-columns:1fr;
+    }
+
+    .machine-copy{
+        padding:32px 23px;
+    }
+
+    .machine-visual{
+        min-height:300px;
+    }
+
+    .machine-terminal{
+        inset:15px;
+        overflow:hidden;
+        font-size:8px;
+    }
+
+    .machine-data-grid{
+        grid-template-columns:1fr;
+    }
+
+    .machine-data{
+        border-right:0;
+        border-bottom:1px solid rgba(255,255,255,.1);
+    }
+
+    .workflow-line{
+        grid-template-columns:1fr;
+    }
+
+    .workflow-step{
+        border-right:0;
+    }
+
+    .workflow-step:nth-child(3n){
+        border-right:0;
+    }
+
+    .accuracy-visual{
+        height:300px;
+    }
+
+    .accuracy-list{
+        grid-template-columns:1fr;
+    }
+
+    .cta{
+        padding:75px 0;
+    }
+
+    .cta-inner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .faq-question{
+        font-size:13px;
+    }
+
+}
+
+
+/* =========================================================
+   IMAGE SAFETY
+========================================================= */
+
+.service-image img,
+.hero-visual img,
+.editorial-image img,
+.bim-visual img,
+.blueprint-image img,
+.drawing-image img,
+.erection-image img,
+.machine-visual img,
+.accuracy-visual img{
+    object-fit:cover;
+}
+
+
+/* Avoid stretched/broken images */
+
+.service-image,
+.hero-visual,
+.editorial-image,
+.bim-visual,
+.blueprint-image,
+.drawing-image,
+.erection-image,
+.machine-visual,
+.accuracy-visual{
+    isolation:isolate;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="top">
+
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-line"></div>
+
+    <div class="hero-inner">
+
+        <div class="hero-copy">
+
+            <div class="hero-kicker">
+                <i></i>
+                Structural Steel Detailing
+            </div>
+
+            <h1>
+                DETAILING STEEL.<br>
+                <span>DEFINING PRECISION.</span>
+            </h1>
+
+            <p class="hero-text">
+                Complete structural steel detailing and BIM
+                documentation for fabrication and erection —
+                connecting engineering intent with practical
+                construction requirements.
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    href="#structural-detailing"
+                    class="btn btn-orange"
+                >
+                    Explore Detailing
+                    →
+                </a>
+
+                <a
+                    href="#workflow"
+                    class="btn btn-glass"
+                >
+                    View Our Workflow
+                    ↗
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <img
+                src="assets/images/steel-detailing-services.png"
+                alt="Structural steel detailing"
+            >
+
+            <div class="hero-tech">
+
+                <div class="hero-tech-label">
+                    Precision • Structure • Detail
+                </div>
+
+                <div class="hero-tech-number">
+                    01
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+
+<section class="section services" id="services">
+
+    <div class="container">
+
+        <div class="services-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    Explore Services
+                </div>
+
+                <h2 class="section-title">
+                    Steel documentation,
+                    <br>
+                    intelligently detailed.
+                </h2>
+
+            </div>
+
+            <p class="section-intro">
+                From structural detailing and BIM modeling to
+                fabrication drawings and machine-ready data,
+                every service is developed around clarity,
+                coordination and construction.
+            </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+
+                    <img
+                        src="assets/images/structural-steel-detailing-home.png"
+                        alt="Structural Steel Detailing"
+                    >
+
+                    <div class="service-index">
+                        01
+                    </div>
+
+                </div>
+
+                <div class="service-body">
+
+                    <div class="service-category">
+                        Detailing
+                    </div>
+
+                    <h3>
+                        Structural Steel Detailing
+                    </h3>
+
+                    <p>
+                        Precision-driven detailing for fabrication
+                        and erection.
+                    </p>
+
+                    <a
+                        href="#structural-detailing"
+                        class="service-read"
+                    >
+                        Read Article
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+
+                    <img
+                        src="assets/images/bim-modeling-home.png"
+                        alt="Steel BIM Modeling"
+                    >
+
+                    <div class="service-index">
+                        02
+                    </div>
+
+                </div>
+
+                <div class="service-body">
+
+                    <div class="service-category">
+                        Model
+                    </div>
+
+                    <h3>
+                        Steel BIM Modeling
+                    </h3>
+
+                    <p>
+                        Coordinated 3D steel model development.
+                    </p>
+
+                    <a
+                        href="#bim-modeling"
+                        class="service-read"
+                    >
+                        Read Article
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+
+                    <img
+                        src="assets/images/Anchor Bolt & Base Plate Details.png"
+                        alt="Anchor Bolt and Base Plate Details"
+                    >
+
+                    <div class="service-index">
+                        03
+                    </div>
+
+                </div>
+
+                <div class="service-body">
+
+                    <div class="service-category">
+                        Foundation
+                    </div>
+
+                    <h3>
+                        Anchor Bolt & Base Plate
+                    </h3>
+
+                    <p>
+                        Precise foundation-to-steel interfaces.
+                    </p>
+
+                    <a
+                        href="#anchor-base"
+                        class="service-read"
+                    >
+                        Read Article
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+
+                    <img
+                        src="assets/images/connection-detailing-home.jpeg"
+                        alt="Connection Detailing"
+                    >
+
+                    <div class="service-index">
+                        04
+                    </div>
+
+                </div>
+
+                <div class="service-body">
+
+                    <div class="service-category">
+                        Connections
+                    </div>
+
+                    <h3>
+                        Connection Detailing
+                    </h3>
+
+                    <p>
+                        Fabrication-ready connection information.
+                    </p>
+
+                    <a
+                        href="#connection-detailing"
+                        class="service-read"
+                    >
+                        Read Article
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+
+                    <img
+                        src="assets/images/Steel Shop Drawings.png"
+                        alt="Steel Shop Drawings"
+                    >
+
+                    <div class="service-index">
+                        05
+                    </div>
+
+                </div>
+
+                <div class="service-body">
+
+                    <div class="service-category">
+                        Fabrication
+                    </div>
+
+                    <h3>
+                        Steel Shop Drawings
+                    </h3>
+
+                    <p>
+                        Clear member and assembly documentation.
+                    </p>
+
+                    <a
+                        href="#shop-drawings"
+                        class="service-read"
+                    >
+                        Read Article
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+
+                    <img
+                        src="assets/images/Erection  General Arrangement.png"
+                        alt="Erection and General Arrangement"
+                    >
+
+                    <div class="service-index">
+                        06
+                    </div>
+
+                </div>
+
+                <div class="service-body">
+
+                    <div class="service-category">
+                        Erection
+                    </div>
+
+                    <h3>
+                        Erection / GA Drawings
+                    </h3>
+
+                    <p>
+                        Field-ready plans, elevations and sections.
+                    </p>
+
+                    <a
+                        href="#erection-ga"
+                        class="service-read"
+                    >
+                        Read Article
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-card">
+
+                <div class="service-image">
+
+                    <img
+                        src="assets/images/NC  CNC & PFXT Files.png"
+                        alt="NC CNC and PFXT Files"
+                    >
+
+                    <div class="service-index">
+                        07
+                    </div>
+
+                </div>
+
+                <div class="service-body">
+
+                    <div class="service-category">
+                        Machine Data
+                    </div>
+
+                    <h3>
+                        NC / CNC & PFXT Files
+                    </h3>
+
+                    <p>
+                        Machine-readable fabrication information.
+                    </p>
+
+                    <a
+                        href="#nc-cnc"
+                        class="service-read"
+                    >
+                        Read Article
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     EXPLORER
+========================================================= -->
+
+<section class="section explorer">
+
+    <div class="container">
+
+        <div class="explorer-layout">
+
+
+            <aside class="sidebar">
+
+                <div class="sidebar-heading">
+                    Explore Topics
+                </div>
+
+                <nav class="topic-list">
+
+                    <a
+                        href="#structural-detailing"
+                        class="topic active"
+                        data-target="structural-detailing"
+                    >
+                        Structural Detailing
+                    </a>
+
+                    <a
+                        href="#bim-modeling"
+                        class="topic"
+                        data-target="bim-modeling"
+                    >
+                        Steel BIM Modeling
+                    </a>
+
+                    <a
+                        href="#anchor-base"
+                        class="topic"
+                        data-target="anchor-base"
+                    >
+                        Anchor & Base Plate
+                    </a>
+
+                    <a
+                        href="#connection-detailing"
+                        class="topic"
+                        data-target="connection-detailing"
+                    >
+                        Connection Detailing
+                    </a>
+
+                    <a
+                        href="#shop-drawings"
+                        class="topic"
+                        data-target="shop-drawings"
+                    >
+                        Shop Drawings
+                    </a>
+
+                    <a
+                        href="#erection-ga"
+                        class="topic"
+                        data-target="erection-ga"
+                    >
+                        Erection / GA
+                    </a>
+
+                    <a
+                        href="#nc-cnc"
+                        class="topic"
+                        data-target="nc-cnc"
+                    >
+                        NC / CNC & PFXT
+                    </a>
+
+                    <a
+                        href="#workflow"
+                        class="topic"
+                        data-target="workflow"
+                    >
+                        Model → Fabrication
+                    </a>
+
+                    <a
+                        href="#accuracy"
+                        class="topic"
+                        data-target="accuracy"
+                    >
+                        Built for Accuracy
+                    </a>
+
+                    <a
+                        href="#faq"
+                        class="topic"
+                        data-target="faq"
+                    >
+                        FAQ
+                    </a>
+
+                </nav>
+
+
+                <div class="progress">
+
+                    <div class="progress-row">
+                        <span>Page Progress</span>
+                        <strong id="progressPercent">
+                            0%
+                        </strong>
+                    </div>
+
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-fill"
+                            id="progressFill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+
+            <main class="topic-content">
+
+
+                <!-- =================================================
+                     01 STRUCTURAL DETAILING
+                ================================================== -->
+
+                <article
+                    class="topic-detail"
+                    id="structural-detailing"
+                >
+
+                    <div class="detail-editorial">
+
+                        <div class="editorial-image">
+
+                            <img
+                                src="assets/images/steel-detailing-services.png"
+                                alt="Structural steel construction"
+                            >
+
+                        </div>
+
+
+                        <div class="editorial-content">
+
+                            <div class="detail-label">
+                                01 / Precision Detailing
+                            </div>
+
+                            <h2 class="detail-title">
+                                Structural Steel
+                                Detailing
+                            </h2>
+
+                            <p class="detail-copy">
+                                At <strong>Grid Steel Detailing</strong>,
+                                we transform structural designs and
+                                engineering intent into accurate,
+                                fabrication-ready steel detailing
+                                documentation.
+                            </p>
+
+                            <p class="detail-copy">
+                                Our detailing process combines
+                                engineering understanding, BIM
+                                coordination and fabrication
+                                requirements to deliver clear and
+                                precise drawings for steel contractors,
+                                fabricators, engineers and construction
+                                teams.
+                            </p>
+
+                            <div class="feature-list">
+
+                                <div class="feature">
+                                    <div class="feature-number">01</div>
+                                    <h4>Accurate Member Sizes</h4>
+                                    <p>
+                                        Beams, columns, braces and
+                                        structural profiles.
+                                    </p>
+                                </div>
+
+                                <div class="feature">
+                                    <div class="feature-number">02</div>
+                                    <h4>Material Specifications</h4>
+                                    <p>
+                                        Grades and relevant fabrication
+                                        information.
+                                    </p>
+                                </div>
+
+                                <div class="feature">
+                                    <div class="feature-number">03</div>
+                                    <h4>Member Marks</h4>
+                                    <p>
+                                        Consistent identification from
+                                        model to fabrication.
+                                    </p>
+                                </div>
+
+                                <div class="feature">
+                                    <div class="feature-number">04</div>
+                                    <h4>Dimensions & Levels</h4>
+                                    <p>
+                                        Clear locations, dimensions and
+                                        references.
+                                    </p>
+                                </div>
+
+                                <div class="feature">
+                                    <div class="feature-number">05</div>
+                                    <h4>Bolt & Weld Information</h4>
+                                    <p>
+                                        Connection and fabrication
+                                        requirements.
+                                    </p>
+                                </div>
+
+                                <div class="feature">
+                                    <div class="feature-number">06</div>
+                                    <h4>Construction Coordination</h4>
+                                    <p>
+                                        Structural and architectural
+                                        coordination.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     02 BIM
+                ================================================== -->
+
+                <article
+                    class="topic-detail"
+                    id="bim-modeling"
+                    style="margin-top:24px;"
+                >
+
+                    <div class="bim-block">
+
+                        <div class="bim-header">
+
+                            <div>
+
+                                <div class="detail-label">
+                                    02 / 3D Coordination
+                                </div>
+
+                                <h2>
+                                    Steel BIM
+                                    Modeling
+                                </h2>
+
+                            </div>
+
+                            <p>
+                                We create detailed 3D BIM models that
+                                provide a coordinated digital
+                                representation of the complete steel
+                                structure.
+                            </p>
+
+                        </div>
+
+
+                        <div class="bim-visual">
+
+                            <img
+                                src="assets/images/steel-bim-services.png"
+                                alt="BIM and engineering work"
+                            >
+
+                            <div class="bim-data">
+
+                                <div class="bim-data-title">
+                                    Model Information
+                                </div>
+
+                                <div class="bim-data-line">
+                                    <span>Structural Framing</span>
+                                    <span>READY</span>
+                                </div>
+
+                                <div class="bim-data-line">
+                                    <span>Connections</span>
+                                    <span>COORD.</span>
+                                </div>
+
+                                <div class="bim-data-line">
+                                    <span>Assemblies</span>
+                                    <span>LINKED</span>
+                                </div>
+
+                                <div class="bim-data-line">
+                                    <span>Clash Review</span>
+                                    <span>CHECK</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="bim-points">
+
+                            <div class="bim-point">
+                                <strong>01</strong>
+                                <h4>Structural Framing</h4>
+                                <p>
+                                    Complete framing developed into
+                                    coordinated 3D steel.
+                                </p>
+                            </div>
+
+                            <div class="bim-point">
+                                <strong>02</strong>
+                                <h4>Primary & Secondary Steel</h4>
+                                <p>
+                                    Beams, columns, braces and
+                                    secondary members.
+                                </p>
+                            </div>
+
+                            <div class="bim-point">
+                                <strong>03</strong>
+                                <h4>Connections & Assemblies</h4>
+                                <p>
+                                    Connections developed as part of
+                                    the coordinated model.
+                                </p>
+                            </div>
+
+                            <div class="bim-point">
+                                <strong>04</strong>
+                                <h4>Miscellaneous Steel</h4>
+                                <p>
+                                    Stairs, platforms, ladders and
+                                    miscellaneous steel.
+                                </p>
+                            </div>
+
+                            <div class="bim-point">
+                                <strong>05</strong>
+                                <h4>Model Coordination</h4>
+                                <p>
+                                    Model-based communication between
+                                    project teams.
+                                </p>
+                            </div>
+
+                            <div class="bim-point">
+                                <strong>06</strong>
+                                <h4>Clash Identification</h4>
+                                <p>
+                                    Positioning issues identified
+                                    before fabrication.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     03 ANCHOR
+                ================================================== -->
+
+                <article
+                    class="topic-detail"
+                    id="anchor-base"
+                    style="margin-top:24px;"
+                >
+
+                    <div class="anchor-block">
+
+                        <div class="anchor-content">
+
+                            <div class="anchor-top">
+
+                                <div>
+
+                                    <div class="detail-label">
+                                        03 / Foundation Interface
+                                    </div>
+
+                                    <h2>
+                                        Anchor Bolt &
+                                        Base Plate Details
+                                    </h2>
+
+                                </div>
+
+                                <p>
+                                    Accurate foundation-to-steel
+                                    connections are critical for proper
+                                    structural installation. We prepare
+                                    detailed documentation for location,
+                                    dimensions, orientation and
+                                    connection requirements.
+                                </p>
+
+                            </div>
+
+
+                            <div class="blueprint">
+
+                                <div class="blueprint-image">
+
+                                    <img
+                                        src="assets/images/anchor-bolt-base-plate.png"
+                                        alt="Steel foundation construction"
+                                    >
+
+                                </div>
+
+
+                                <div class="blueprint-info">
+
+                                    <div class="blueprint-card">
+                                        <span>01</span>
+                                        <h4>Base Plate Dimensions</h4>
+                                        <p>
+                                            Plate dimensions, thickness
+                                            and material information.
+                                        </p>
+                                    </div>
+
+                                    <div class="blueprint-card">
+                                        <span>02</span>
+                                        <h4>Anchor Bolt Locations</h4>
+                                        <p>
+                                            Bolt locations and patterns
+                                            for foundation coordination.
+                                        </p>
+                                    </div>
+
+                                    <div class="blueprint-card">
+                                        <span>03</span>
+                                        <h4>Bolt Diameter & Grade</h4>
+                                        <p>
+                                            Required bolt sizes and
+                                            grades.
+                                        </p>
+                                    </div>
+
+                                    <div class="blueprint-card">
+                                        <span>04</span>
+                                        <h4>Hole Sizes & Patterns</h4>
+                                        <p>
+                                            Hole dimensions and patterns
+                                            incorporated into details.
+                                        </p>
+                                    </div>
+
+                                    <div class="blueprint-card">
+                                        <span>05</span>
+                                        <h4>Column Orientation</h4>
+                                        <p>
+                                            Offsets and positioning
+                                            references for erection.
+                                        </p>
+                                    </div>
+
+                                    <div class="blueprint-card">
+                                        <span>06</span>
+                                        <h4>Foundation Interface</h4>
+                                        <p>
+                                            Elevations, offsets and
+                                            grouting requirements.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     04 CONNECTION
+                ================================================== -->
+
+                <article
+                    class="topic-detail"
+                    id="connection-detailing"
+                    style="margin-top:24px;"
+                >
+
+                    <div class="connection-block">
+
+                        <div class="connection-intro">
+
+                            <div class="detail-label">
+                                04 / Connections
+                            </div>
+
+                            <h2>
+                                Connection
+                                Detailing
+                            </h2>
+
+                            <p>
+                                Connections are one of the most
+                                important parts of structural steel
+                                detailing. We develop clear and
+                                practical connection details based on
+                                the engineering design and project
+                                requirements.
+                            </p>
+
+                            <div class="connection-mark">
+                                B
+                            </div>
+
+                        </div>
+
+
+                        <div class="connection-matrix">
+
+                            <div class="connection-card">
+
+                                <div class="connection-icon">
+                                    B
+                                </div>
+
+                                <h3>
+                                    Bolted Connections
+                                </h3>
+
+                                <p>
+                                    Bolts, plates, dimensions and
+                                    references clearly represented for
+                                    fabrication and assembly.
+                                </p>
+
+                            </div>
+
+
+                            <div class="connection-card">
+
+                                <div class="connection-icon">
+                                    W
+                                </div>
+
+                                <h3>
+                                    Welded Connections
+                                </h3>
+
+                                <p>
+                                    Welding requirements and applicable
+                                    connection information presented in
+                                    fabrication-ready documentation.
+                                </p>
+
+                            </div>
+
+
+                            <div class="connection-card">
+
+                                <div class="connection-icon">
+                                    ↕
+                                </div>
+
+                                <h3>
+                                    Beam-to-Column
+                                </h3>
+
+                                <p>
+                                    Member interfaces and required
+                                    fabrication information.
+                                </p>
+
+                            </div>
+
+
+                            <div class="connection-card">
+
+                                <div class="connection-icon">
+                                    ↔
+                                </div>
+
+                                <h3>
+                                    Beam-to-Beam
+                                </h3>
+
+                                <p>
+                                    Practical connection documentation
+                                    for fabrication and field assembly.
+                                </p>
+
+                            </div>
+
+
+                            <div class="connection-card">
+
+                                <div class="connection-icon">
+                                    ◇
+                                </div>
+
+                                <h3>
+                                    Gusset & Bracing
+                                </h3>
+
+                                <p>
+                                    Bracing connections, gusset plates
+                                    and related components.
+                                </p>
+
+                            </div>
+
+
+                            <div class="connection-card">
+
+                                <div class="connection-icon">
+                                    +
+                                </div>
+
+                                <h3>
+                                    Stiffeners & Plates
+                                </h3>
+
+                                <p>
+                                    Stiffeners, splice plates, end
+                                    plates and connection plates.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     05 SHOP DRAWINGS
+                ================================================== -->
+
+                <article
+                    class="topic-detail"
+                    id="shop-drawings"
+                    style="margin-top:24px;"
+                >
+
+                    <div class="shop-block">
+
+                        <div class="shop-head">
+
+                            <div>
+
+                                <div class="detail-label">
+                                    05 / Fabrication Documentation
+                                </div>
+
+                                <h2>
+                                    Steel Shop
+                                    Drawings
+                                </h2>
+
+                            </div>
+
+                            <p>
+                                Our steel shop drawings convert approved
+                                structural information into clear
+                                fabrication documentation required to
+                                manufacture individual members and
+                                assemblies accurately.
+                            </p>
+
+                        </div>
+
+
+                        <div class="drawing-board">
+
+                            <div class="drawing-image">
+
+                                <img
+                                    src="assets/images/steel-shop-drawing-services.png"
+                                    alt="Engineering drawings and fabrication"
+                                >
+
+                                <div class="drawing-stamp">
+                                    Fabrication Ready
+                                </div>
+
+                            </div>
+
+
+                            <div class="drawing-specs">
+
+                                <div class="spec-head">
+                                    Drawing Information
+                                </div>
+
+                                <div class="spec-row">
+                                    <span>01</span>
+                                    <h4>Part Drawings</h4>
+                                    <p>
+                                        Individual steel members and
+                                        parts.
+                                    </p>
+                                </div>
+
+                                <div class="spec-row">
+                                    <span>02</span>
+                                    <h4>Assembly Drawings</h4>
+                                    <p>
+                                        Member relationships and
+                                        identification.
+                                    </p>
+                                </div>
+
+                                <div class="spec-row">
+                                    <span>03</span>
+                                    <h4>Piece Marks</h4>
+                                    <p>
+                                        Consistent identification
+                                        between model and fabrication.
+                                    </p>
+                                </div>
+
+                                <div class="spec-row">
+                                    <span>04</span>
+                                    <h4>Material Information</h4>
+                                    <p>
+                                        Plate, profile and material
+                                        specifications.
+                                    </p>
+                                </div>
+
+                                <div class="spec-row">
+                                    <span>05</span>
+                                    <h4>Bolt & Hole Details</h4>
+                                    <p>
+                                        Bolt locations, hole sizes and
+                                        connection information.
+                                    </p>
+                                </div>
+
+                                <div class="spec-row">
+                                    <span>06</span>
+                                    <h4>Weld Symbols</h4>
+                                    <p>
+                                        Clear welding information for
+                                        fabrication and assembly.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     06 ERECTION
+                ================================================== -->
+
+                <article
+                    class="topic-detail"
+                    id="erection-ga"
+                    style="margin-top:24px;"
+                >
+
+                    <div class="erection-block">
+
+                        <div class="erection-image">
+
+                            <img
+                                src="assets/images/steel-erection-general-arrangement-services.png"
+                                alt="Steel erection construction"
+                            >
+
+                        </div>
+
+                        <div class="erection-overlay"></div>
+
+
+                        <div class="erection-content">
+
+                            <div class="detail-label">
+                                06 / Field Documentation
+                            </div>
+
+                            <h2>
+                                Erection /
+                                General Arrangement
+                            </h2>
+
+                            <p>
+                                Erection and General Arrangement drawings
+                                provide the field team with a clear
+                                understanding of how fabricated steel
+                                components are positioned and assembled
+                                on site.
+                            </p>
+
+                            <div class="erection-points">
+
+                                <div class="erection-point">
+                                    <span>01</span>
+                                    Floor Plans
+                                </div>
+
+                                <div class="erection-point">
+                                    <span>02</span>
+                                    Roof Plans
+                                </div>
+
+                                <div class="erection-point">
+                                    <span>03</span>
+                                    Elevations
+                                </div>
+
+                                <div class="erection-point">
+                                    <span>04</span>
+                                    Sections
+                                </div>
+
+                                <div class="erection-point">
+                                    <span>05</span>
+                                    Grid Lines & Levels
+                                </div>
+
+                                <div class="erection-point">
+                                    <span>06</span>
+                                    Erection References
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =================================================
+                     07 NC CNC
+                ================================================== -->
+
+                <article
+                    class="topic-detail"
+                    id="nc-cnc"
+                    style="margin-top:24px;"
+                >
+
+                    <div class="machine-block">
+
+                        <div class="machine-top">
+
+                            <div class="machine-copy">
+
+                                <div class="detail-label">
+                                    07 / Machine Data
+                                </div>
+
+                                <h2>
+                                    NC / CNC
+                                    <br>
+                                    & PFXT Files
+                                </h2>
+
+                                <p>
+                                    To support fabrication workflows,
+                                    we can prepare machine-readable
+                                    fabrication files generated from
+                                    coordinated steel detailing data.
+                                </p>
+
+                                <p>
+                                    These files help transfer accurate
+                                    member and plate information from
+                                    the detailing environment to
+                                    fabrication machinery and
+                                    production systems.
+                                </p>
+
+                            </div>
+
+
+                            <div class="machine-visual">
+
+                                <img
+                                    src="assets/images/nc-cnc-pfxt-file-services.png"
+                                    alt="Industrial fabrication machinery"
+                                >
+
+                                <div class="machine-terminal">
+
+                                    <strong>
+                                        GRID FABRICATION DATA
+                                    </strong>
+
+                                    <br>
+
+                                    MEMBER : BEAM-204
+                                    <br>
+                                    PROFILE : UB 610
+                                    <br>
+                                    LENGTH  : 8420
+                                    <br>
+                                    PLATE   : PL-16
+                                    <br>
+                                    HOLES   : 24
+                                    <br>
+                                    DRILL   : ACTIVE
+                                    <br>
+                                    CUT     : READY
+                                    <br>
+                                    STATUS  : <strong>COORDINATED</strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="machine-data-grid">
+
+                            <div class="machine-data">
+                                <span>01</span>
+                                <h4>NC Files</h4>
+                                <p>
+                                    Machine-readable NC information
+                                    for automated workflows.
+                                </p>
+                            </div>
+
+                            <div class="machine-data">
+                                <span>02</span>
+                                <h4>CNC Machine Data</h4>
+                                <p>
+                                    Coordinated model data toward
+                                    production systems.
+                                </p>
+                            </div>
+
+                            <div class="machine-data">
+                                <span>03</span>
+                                <h4>PFXT Files</h4>
+                                <p>
+                                    Fabrication information prepared
+                                    as required.
+                                </p>
+                            </div>
+
+                            <div class="machine-data">
+                                <span>04</span>
+                                <h4>Plate / Hole Data</h4>
+                                <p>
+                                    Cutting and drilling information
+                                    for fabrication workflows.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </main>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     WORKFLOW
+========================================================= -->
+
+<section
+    class="section workflow"
+    id="workflow"
+>
+
+    <div class="container">
+
+        <div class="workflow-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    Connected Workflow
+                </div>
+
+                <h2 class="section-title">
+                    From Model
+                    <br>
+                    to Fabrication.
+                </h2>
+
+            </div>
+
+            <p>
+                Each stage builds on the previous one, helping
+                maintain continuity between engineering, modeling,
+                fabrication and erection.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-line">
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-dot"></div>
+
+                <div class="workflow-number">
+                    01 / 06
+                </div>
+
+                <h3>
+                    Design Understanding
+                </h3>
+
+                <p>
+                    Structural drawings, specifications,
+                    architectural information and project
+                    requirements are reviewed.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-dot"></div>
+
+                <div class="workflow-number">
+                    02 / 06
+                </div>
+
+                <h3>
+                    3D Steel Modeling
+                </h3>
+
+                <p>
+                    Members, assemblies and connections are
+                    developed into a coordinated BIM model.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-dot"></div>
+
+                <div class="workflow-number">
+                    03 / 06
+                </div>
+
+                <h3>
+                    Connection Development
+                </h3>
+
+                <p>
+                    Connections, base plates and anchor bolts are
+                    developed and coordinated.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-dot"></div>
+
+                <div class="workflow-number">
+                    04 / 06
+                </div>
+
+                <h3>
+                    Shop Drawings
+                </h3>
+
+                <p>
+                    Detailed fabrication and assembly drawings are
+                    generated from the coordinated model.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-dot"></div>
+
+                <div class="workflow-number">
+                    05 / 06
+                </div>
+
+                <h3>
+                    Erection Documentation
+                </h3>
+
+                <p>
+                    GA and erection drawings provide installation
+                    information for fabricated steel.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-dot"></div>
+
+                <div class="workflow-number">
+                    06 / 06
+                </div>
+
+                <h3>
+                    Fabrication Data
+                </h3>
+
+                <p>
+                    NC/CNC and other machine-readable files support
+                    the fabrication process.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ACCURACY
+========================================================= -->
+
+<section
+    class="section accuracy"
+    id="accuracy"
+>
+
+    <div class="container">
+
+        <div class="accuracy-layout">
+
+
+            <div class="accuracy-visual">
+
+                <img
+                    src="assets/images/accuracy-coordination-construction-services.png"
+                    alt="Completed steel construction"
+                >
+
+                <div class="accuracy-badge">
+
+                    <strong>
+                        Construction Ready
+                    </strong>
+
+                    <span>
+                        Accuracy • Coordination • Clarity
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="accuracy-copy">
+
+                <div class="eyebrow">
+                    Built for Accuracy
+                </div>
+
+                <h2 class="section-title">
+                    Coordinated
+                    for Construction.
+                </h2>
+
+                <p>
+                    At Grid Steel Detailing, we believe good steel
+                    detailing is more than producing drawings. It is
+                    about creating a reliable connection between
+                    <strong>engineering, fabrication, and construction.</strong>
+                </p>
+
+                <p>
+                    Our documentation is developed with a focus on
+                    accuracy, coordination, clarity and practical
+                    fabrication requirements — helping project teams
+                    move confidently from structural design to
+                    completed steelwork.
+                </p>
+
+
+                <div class="accuracy-list">
+
+                    <div class="accuracy-item">
+                        <span>01</span>
+                        <h4>Accuracy</h4>
+                        <p>
+                            Attention to member, connection and
+                            fabrication requirements.
+                        </p>
+                    </div>
+
+                    <div class="accuracy-item">
+                        <span>02</span>
+                        <h4>Coordination</h4>
+                        <p>
+                            Documentation supporting project
+                            discipline coordination.
+                        </p>
+                    </div>
+
+                    <div class="accuracy-item">
+                        <span>03</span>
+                        <h4>Clarity</h4>
+                        <p>
+                            Information structured for efficient
+                            interpretation.
+                        </p>
+                    </div>
+
+                    <div class="accuracy-item">
+                        <span>04</span>
+                        <h4>Fabrication Focus</h4>
+                        <p>
+                            Practical production requirements
+                            considered throughout.
+                        </p>
+                    </div>
+
+                    <div class="accuracy-item">
+                        <span>05</span>
+                        <h4>Erection Support</h4>
+                        <p>
+                            Clear positioning and assembly information
+                            for field teams.
+                        </p>
+                    </div>
+
+                    <div class="accuracy-item">
+                        <span>06</span>
+                        <h4>Reliable Documentation</h4>
+                        <p>
+                            A dependable chain from engineering intent
+                            to completed steelwork.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FAQ
+========================================================= -->
+
+<section
+    class="section faq"
+    id="faq"
+>
+
+    <div class="container">
+
+        <div class="faq-layout">
+
+
+            <div class="faq-side">
+
+                <div class="eyebrow">
+                    Frequently Asked Questions
+                </div>
+
+                <h2 class="section-title">
+                    Structural Steel
+                    Detailing FAQ
+                </h2>
+
+                <p>
+                    Quick answers about structural steel detailing,
+                    BIM modeling, fabrication drawings, erection
+                    documentation and machine-ready data.
+                </p>
+
+            </div>
+
+
+            <div class="faq-list">
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            What is structural steel detailing?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <div class="faq-inner">
+
+                            <p>
+                                Structural steel detailing is the
+                                process of converting structural
+                                engineering information into detailed
+                                documentation used for steel
+                                fabrication, assembly and erection.
+                                It includes member information,
+                                dimensions, connections, materials,
+                                piece marks and related fabrication
+                                references.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            What is included in steel BIM modeling?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <div class="faq-inner">
+
+                            <p>
+                                Steel BIM modeling can include primary
+                                and secondary framing, structural
+                                members, connections, assemblies,
+                                miscellaneous steel and coordinated
+                                model information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            What are steel shop drawings used for?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <div class="faq-inner">
+
+                            <p>
+                                Shop drawings provide fabricators with
+                                detailed information needed to
+                                manufacture steel members and
+                                assemblies accurately, including
+                                dimensions, materials, piece marks,
+                                holes, bolts and weld information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            What are erection / GA drawings?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <div class="faq-inner">
+
+                            <p>
+                                Erection and General Arrangement
+                                drawings communicate the overall
+                                arrangement and positioning of
+                                fabricated steel components through
+                                plans, elevations, sections, grids,
+                                levels and erection references.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            Do you provide anchor bolt and base plate details?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <div class="faq-inner">
+
+                            <p>
+                                Yes. Anchor bolt and base plate
+                                documentation can communicate plate
+                                dimensions, anchor bolt locations,
+                                orientation, offsets, hole patterns
+                                and relevant foundation interface
+                                information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            Can NC / CNC and PFXT files be prepared?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <div class="faq-inner">
+
+                            <p>
+                                Machine-readable fabrication files
+                                can be prepared as required by the
+                                project's detailing and fabrication
+                                workflow.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            How does the workflow connect modeling to fabrication?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <div class="faq-inner">
+
+                            <p>
+                                The workflow connects design
+                                understanding, 3D modeling, connection
+                                development, shop drawing production,
+                                erection documentation and fabrication
+                                data so information remains consistent
+                                through each stage.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-item">
+
+                    <button class="faq-question">
+
+                        <span>
+                            Why is coordination important in steel detailing?
+                        </span>
+
+                        <span class="faq-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="faq-answer">
+
+                        <div class="faq-inner">
+
+                            <p>
+                                Coordination helps maintain
+                                consistency between structural
+                                information, the steel model,
+                                fabrication documentation and field
+                                erection requirements, reducing
+                                avoidable conflicts and interpretation
+                                issues.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+
+<section class="cta">
+
+    <div class="container">
+
+        <div class="cta-inner">
+
+            <div>
+
+                <div class="eyebrow">
+                    Grid Steel Detailing
+                </div>
+
+                <h2>
+                    Ready to Detail Your
+                    Next Steel Project?
+                </h2>
+
+                <p>
+                    Share your structural drawings, architectural
+                    information or project requirements with Grid
+                    Steel Detailing and let us understand the scope
+                    of your structural steel detailing work.
+                </p>
+
+            </div>
+
+
+            <a
+                href="#top"
+                class="btn btn-orange"
+            >
+                Start a Project
+                →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
+
+<button
+    class="back-top"
+    id="backTop"
+    aria-label="Back to top"
+>
+    ↑
+</button>
+
+
+
+<script>
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+const faqItems =
+    document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item => {
+
+    const button =
+        item.querySelector(".faq-question");
+
+    button.addEventListener("click", () => {
+
+        const alreadyOpen =
+            item.classList.contains("open");
+
+        faqItems.forEach(other => {
+            other.classList.remove("open");
+        });
+
+        if(!alreadyOpen){
+            item.classList.add("open");
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+   TOPIC LINKS
+========================================================= */
+
+const topicLinks =
+    document.querySelectorAll(".topic");
+
+topicLinks.forEach(link => {
+
+    link.addEventListener("click", function(){
+
+        topicLinks.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        this.classList.add("active");
+
+    });
+
+});
+
+
+/* =========================================================
+   ACTIVE TOPIC ON SCROLL
+========================================================= */
+
+const observedSections =
+    document.querySelectorAll(
+        ".topic-detail, #workflow, #accuracy, #faq"
+    );
+
+const sectionObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(!entry.isIntersecting){
+                    return;
+                }
+
+                const currentId =
+                    entry.target.id;
+
+                topicLinks.forEach(link => {
+
+                    link.classList.toggle(
+                        "active",
+                        link.dataset.target === currentId
+                    );
+
+                });
+
+            });
+
+        },
+        {
+            rootMargin:"-20% 0px -65% 0px",
+            threshold:0
+        }
+    );
+
+observedSections.forEach(section => {
+    sectionObserver.observe(section);
+});
+
+
+/* =========================================================
+   PAGE PROGRESS
+========================================================= */
+
+const progressFill =
+    document.getElementById("progressFill");
+
+const progressPercent =
+    document.getElementById("progressPercent");
+
+function updateProgress(){
+
+    const scrollTop =
+        window.scrollY;
+
+    const totalHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+    let percentage = 0;
+
+    if(totalHeight > 0){
+        percentage =
+            (scrollTop / totalHeight) * 100;
+    }
+
+    percentage =
+        Math.max(
+            0,
+            Math.min(100,percentage)
+        );
+
+    progressFill.style.width =
+        percentage + "%";
+
+    progressPercent.textContent =
+        Math.round(percentage) + "%";
+
+}
+
+window.addEventListener(
+    "scroll",
+    updateProgress,
+    {passive:true}
+);
+
+window.addEventListener(
+    "load",
+    updateProgress
+);
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+const backTop =
+    document.getElementById("backTop");
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if(window.scrollY > 600){
+            backTop.classList.add("show");
+        }else{
+            backTop.classList.remove("show");
+        }
+
+    },
+    {passive:true}
+);
+
+backTop.addEventListener(
+    "click",
+    () => {
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+);
+
+
+/* =========================================================
+   SMOOTH INTERNAL LINKS
+========================================================= */
+
+document.querySelectorAll(
+    'a[href^="#"]'
+).forEach(anchor => {
+
+    anchor.addEventListener(
+        "click",
+        function(event){
+
+            const selector =
+                this.getAttribute("href");
+
+            if(
+                !selector ||
+                selector === "#"
+            ){
+                return;
+            }
+
+            const target =
+                document.querySelector(selector);
+
+            if(!target){
+                return;
+            }
+
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   IMAGE FALLBACK
+========================================================= */
+
+document.querySelectorAll("img")
+.forEach(img => {
+
+    img.addEventListener(
+        "error",
+        function(){
+
+            this.style.display = "none";
+
+            if(this.parentElement){
+                this.parentElement.style.background =
+                    "linear-gradient(135deg,#0F2339,#173650)";
+            }
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>
+```

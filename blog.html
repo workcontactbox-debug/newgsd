@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Grid Steel Detailing | Steel, BIM & Construction Insights</title>
+
+<meta name="description" content="Grid Steel Detailing Blog — Structural steel detailing, BIM modelling, connection detailing, shop drawings, fabrication and coordination insights.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/blog.css">
+</head>
+
+<body>
+
+<div id="navbar-component"></div>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="blog-hero">
+
+    <div class="hero-lines"></div>
+
+    <div class="container hero-inner">
+
+        <div class="hero-copy">
+
+            <div class="hero-label">
+                <span></span>
+                Grid Steel Detailing · Insights
+            </div>
+
+            <h1 class="hero-title">
+                Steel. <em>Precision.</em> Knowledge.
+            </h1>
+
+            <p class="hero-text">
+                A practical knowledge hub covering structural steel detailing,
+                BIM modelling, connection detailing, shop drawings,
+                fabrication, coordination and the digital future of construction.
+            </p>
+
+            <div class="hero-actions">
+
+                <button class="hero-btn primary" onclick="scrollToArticles()">
+                    Explore Articles
+                    <span>→</span>
+                </button>
+
+                <button class="hero-btn secondary" onclick="scrollToFAQ()">
+                    FAQs
+                    <span>↓</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     INTRO
+========================================================= -->
+
+<section class="section intro reveal">
+
+    <div class="container intro-grid">
+
+        <div class="intro-box-wrap">
+
+            <div class="intro-info-box">
+
+                <div class="intro-box-top">
+
+                    <span class="intro-box-number">
+                        01
+                    </span>
+
+                    <span class="intro-box-status">
+                        <span></span>
+                        KNOWLEDGE HUB
+                    </span>
+
+                </div>
+
+                <div class="intro-box-line"></div>
+
+                <h3>
+                    Built Around
+                    <span>Real Steel Workflows.</span>
+                </h3>
+
+                <p>
+                    Practical insights for detailing, BIM, fabrication,
+                    coordination and erection — created to connect
+                    technical knowledge with real construction.
+                </p>
+
+                <div class="intro-box-bottom">
+
+                    <span>DETAIL</span>
+                    <span>BIM</span>
+                    <span>FABRICATION</span>
+                    <span>COORDINATION</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <span class="eyebrow">
+                The Grid Knowledge Hub
+            </span>
+
+            <h2>
+                Connecting technical knowledge
+                with the way steel is actually built.
+            </h2>
+
+            <p>
+                Welcome to the <strong>Grid Steel Detailing Blog</strong> —
+                a practical knowledge hub for structural steel detailing,
+                BIM modelling, connection detailing, shop drawings,
+                steel fabrication and multidisciplinary coordination.
+            </p>
+
+            <p>
+                The modern construction industry depends on more than good
+                structural design. Successful steel projects require accurate
+                detailing, coordinated models, clear fabrication documentation
+                and reliable communication between engineers, architects,
+                detailers, fabricators, contractors and erection teams.
+            </p>
+
+            <p>
+                Our focus is simple:
+                <strong>Connecting Steel With Precision.</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ARTICLES
+========================================================= -->
+
+<section class="section article-section reveal" id="articles">
+
+    <div class="container">
+
+        <span class="eyebrow">
+            Knowledge & Expertise
+        </span>
+
+        <h2 class="section-title">
+            Structural Steel,<br>
+            BIM & Construction Insights
+        </h2>
+
+        <p class="section-subtitle">
+            Explore practical insights into the complete journey from
+            structural design to detailing, fabrication and erection.
+        </p>
+
+        <div class="article-toolbar">
+
+            <div>
+                <strong id="articleCount">
+                    10 Articles
+                </strong>
+            </div>
+
+            <div class="search-box">
+
+                <span class="search-icon">⌕</span>
+
+                <input
+                    type="text"
+                    id="articleSearch"
+                    placeholder="Search articles..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+        </div>
+
+        <div class="article-grid" id="articleGrid"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FEATURED
+========================================================= -->
+
+<section class="featured reveal">
+
+    <div class="container">
+
+        <div class="featured-card">
+
+            <div class="featured-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85"
+                    alt="Steel construction structure"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="featured-copy">
+
+                <span class="eyebrow">
+                    Featured Perspective
+                </span>
+
+                <h2>
+                    The Future of Structural Steel Detailing
+                </h2>
+
+                <p>
+                    Construction is becoming increasingly digital.
+                    BIM, model-based detailing, automated documentation,
+                    digital fabrication, clash detection and integrated
+                    project workflows are changing how steel projects
+                    are planned and delivered.
+                </p>
+
+                <button
+                    class="featured-btn"
+                    onclick="openArticle(8)"
+                >
+                    Read Featured Article →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FAQ
+========================================================= -->
+
+<section class="section faq-section reveal" id="faq">
+
+    <div class="container">
+
+        <span class="eyebrow">
+            Frequently Asked Questions
+        </span>
+
+        <h2 class="section-title">
+            Common questions about
+            steel detailing & BIM.
+        </h2>
+
+        <div class="faq">
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    What is structural steel detailing?
+                    <span class="faq-arrow">+</span>
+                </button>
+
+                <div class="faq-answer">
+
+                    <div class="faq-answer-inner">
+
+                        Structural steel detailing is the process of converting
+                        structural design information into detailed models and
+                        drawings used for steel fabrication and erection. It can
+                        include member detailing, connections, shop drawings,
+                        erection documentation and fabrication information.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    What is BIM modelling in structural steel?
+                    <span class="faq-arrow">+</span>
+                </button>
+
+                <div class="faq-answer">
+
+                    <div class="faq-answer-inner">
+
+                        Structural steel BIM modelling is the development of a
+                        detailed 3D digital model representing the steel structure
+                        and its components. It can support visualization,
+                        coordination, detailing, documentation and fabrication
+                        workflows.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    Why are steel shop drawings important?
+                    <span class="faq-arrow">+</span>
+                </button>
+
+                <div class="faq-answer">
+
+                    <div class="faq-answer-inner">
+
+                        Shop drawings provide fabrication teams with detailed
+                        information about steel members, dimensions, connections,
+                        materials, bolts, welds, assemblies and other requirements
+                        needed to manufacture the structure.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    What is steel BIM coordination?
+                    <span class="faq-arrow">+</span>
+                </button>
+
+                <div class="faq-answer">
+
+                    <div class="faq-answer-inner">
+
+                        Steel BIM coordination involves reviewing the structural
+                        steel model with other building disciplines to identify
+                        clashes, clearance problems and coordination issues before
+                        fabrication and installation.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    What does connection detailing include?
+                    <span class="faq-arrow">+</span>
+                </button>
+
+                <div class="faq-answer">
+
+                    <div class="faq-answer-inner">
+
+                        Connection detailing can include the detailed representation
+                        of plates, bolts, welds, stiffeners, gussets, base plates
+                        and other components required to communicate how structural
+                        steel members connect.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    Can BIM reduce steel fabrication errors?
+                    <span class="faq-arrow">+</span>
+                </button>
+
+                <div class="faq-answer">
+
+                    <div class="faq-answer-inner">
+
+                        A coordinated BIM workflow can help identify clashes and
+                        inconsistencies earlier and can improve consistency between
+                        the structural model and associated documentation. BIM is
+                        most effective when combined with experienced detailing,
+                        project standards, quality control and coordination.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="services-cta reveal">
+
+    <div class="container">
+
+        <span class="eyebrow">
+            Grid Steel Detailing
+        </span>
+
+        <h2 class="section-title">
+            Precision that moves
+            projects forward.
+        </h2>
+
+        <p class="section-subtitle">
+            From structural steel detailing and BIM modelling to connection
+            detailing, shop drawings and coordination — build with information
+            that is accurate, clear and fabrication-focused.
+        </p>
+
+        <div class="service-pills">
+
+            <span class="service-pill">
+                Structural Steel Detailing
+            </span>
+
+            <span class="service-pill">
+                BIM Modelling
+            </span>
+
+            <span class="service-pill">
+                Connection Detailing
+            </span>
+
+            <span class="service-pill">
+                Shop Drawings
+            </span>
+
+            <span class="service-pill">
+                Steel BIM Coordination
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ARTICLE MODAL
+========================================================= -->
+
+<div class="article-modal" id="articleModal">
+
+    <div class="article-window" id="articleWindow">
+
+        <div class="article-header">
+
+            <div
+                class="article-header-title"
+                id="modalTitle"
+            >
+                Article
+            </div>
+
+            <div class="article-controls">
+
+                <button
+                    class="control-btn article-nav-btn"
+                    id="previousArticle"
+                    title="Previous Article"
+                    aria-label="Previous article"
+                >
+                    ←
+                </button>
+
+                <button
+                    class="control-btn article-nav-btn"
+                    id="nextArticle"
+                    title="Next Article"
+                    aria-label="Next article"
+                >
+                    →
+                </button>
+
+                <button
+                    class="control-btn"
+                    id="zoomOut"
+                    title="Zoom Out"
+                    aria-label="Zoom out"
+                >
+                    −
+                </button>
+
+                <button
+                    class="control-btn"
+                    id="zoomReset"
+                    title="Reset Zoom"
+                    aria-label="Reset zoom"
+                    style="font-size:11px;width:48px;"
+                >
+                    100%
+                </button>
+
+                <button
+                    class="control-btn"
+                    id="zoomIn"
+                    title="Zoom In"
+                    aria-label="Zoom in"
+                >
+                    +
+                </button>
+
+                <button
+                    class="control-btn"
+                    id="fullscreenBtn"
+                    title="Fullscreen Reading Mode"
+                    aria-label="Open fullscreen reading mode"
+                >
+                    ⛶
+                </button>
+
+                <button
+                    class="control-btn close"
+                    id="closeArticle"
+                    title="Close Article"
+                    aria-label="Close article"
+                >
+                    ×
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            class="article-scroll"
+            id="articleScroll"
+        >
+
+            <article
+                class="article-content"
+                id="articleContent"
+            ></article>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ZOOM NOTIFICATION
+========================================================= -->
+
+<div
+    class="zoom-notice"
+    id="zoomNotice"
+    role="status"
+    aria-live="polite"
+></div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div id="footer-component"></div>
+
+
+<!-- =====================================================
+     FLOATING UI
+===================================================== -->
+
+<div id="floating-component"></div>
+
+
+<!-- =====================================================
+     COMPONENT JAVASCRIPT
+===================================================== -->
+
+<script src="js/blog.js"></script>
+<script src="js/components.js"></script>
+<!-- <script src="js/main.js"></script> -->
+<script src="js/component-loader.js"></script>
+
+</body>
+</html>

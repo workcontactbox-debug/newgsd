@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Page Under Development | Grid Steel Detailing</title>
+
+    <meta
+        name="description"
+        content="This page is currently under development. Grid Steel Detailing is working to bring you a better experience."
+    >
+
+    <style>
+
+        /* =========================================================
+           GRID STEEL DETAILING
+           TEMPORARY PAGE
+           CLEAN • NATURAL • PREMIUM
+        ========================================================= */
+
+        :root{
+            --navy:#0F2339;
+            --navy-dark:#09121F;
+            --orange:#F26A09;
+            --white:#FFFFFF;
+            --soft:#F7F9FB;
+            --text:#1B2733;
+            --muted:#687686;
+            --border:rgba(15,35,57,.10);
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+
+            min-height:100vh;
+
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background:var(--white);
+
+            color:var(--text);
+
+            overflow-x:hidden;
+
+        }
+
+
+        /* =========================================================
+           MAIN PAGE
+        ========================================================= */
+
+        .page{
+
+            min-height:100vh;
+
+            display:flex;
+
+            flex-direction:column;
+
+            position:relative;
+
+            overflow:hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(242,106,9,.045),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 8% 88%,
+                    rgba(15,35,57,.035),
+                    transparent 28%
+                ),
+
+                #fff;
+
+        }
+
+
+        /* =========================================================
+           SUBTLE GRID
+        ========================================================= */
+
+        .background-grid{
+
+            position:absolute;
+
+            inset:0;
+
+            pointer-events:none;
+
+            opacity:.38;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(15,35,57,.028) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(15,35,57,.028) 1px,
+                    transparent 1px
+                );
+
+            background-size:80px 80px;
+
+            mask-image:
+
+                linear-gradient(
+                    to bottom,
+                    black 0%,
+                    rgba(0,0,0,.5) 55%,
+                    transparent 100%
+                );
+
+        }
+
+
+        /* =========================================================
+           NATURAL DECORATIVE ELEMENT
+        ========================================================= */
+
+        .decor{
+
+            position:absolute;
+
+            pointer-events:none;
+
+        }
+
+        .decor-top{
+
+            width:260px;
+
+            height:260px;
+
+            right:-130px;
+
+            top:-130px;
+
+            border:
+
+                1px solid
+                rgba(242,106,9,.15);
+
+            border-radius:50%;
+
+        }
+
+        .decor-top::after{
+
+            content:"";
+
+            position:absolute;
+
+            inset:28px;
+
+            border:
+
+                1px dashed
+                rgba(15,35,57,.08);
+
+            border-radius:50%;
+
+        }
+
+        .decor-bottom{
+
+            width:190px;
+
+            height:1px;
+
+            left:-70px;
+
+            bottom:22%;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(15,35,57,.15),
+                    transparent
+                );
+
+            transform:rotate(-28deg);
+
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header{
+
+            position:relative;
+
+            z-index:5;
+
+            width:100%;
+
+            padding:30px 6%;
+
+        }
+
+        .header-inner{
+
+            max-width:1400px;
+
+            margin:auto;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:space-between;
+
+        }
+
+
+        /* =========================================================
+           TEXT BRAND — NO LOGO
+        ========================================================= */
+
+        .brand{
+
+            text-decoration:none;
+
+            color:var(--navy);
+
+        }
+
+        .brand-name{
+
+            font-size:18px;
+
+            font-weight:800;
+
+            letter-spacing:.7px;
+
+            line-height:1.1;
+
+        }
+
+        .brand-tagline{
+
+            margin-top:7px;
+
+            font-size:8px;
+
+            font-weight:500;
+
+            color:var(--muted);
+
+            letter-spacing:2px;
+
+            text-transform:uppercase;
+
+        }
+
+
+        /* =========================================================
+           STATUS
+        ========================================================= */
+
+        .status{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:9px;
+
+            color:var(--muted);
+
+            font-size:9px;
+
+            font-weight:700;
+
+            letter-spacing:1.5px;
+
+            text-transform:uppercase;
+
+        }
+
+        .status-dot{
+
+            width:7px;
+
+            height:7px;
+
+            border-radius:50%;
+
+            background:var(--orange);
+
+            animation:pulse 2s infinite;
+
+        }
+
+        @keyframes pulse{
+
+            0%,
+            100%{
+
+                box-shadow:
+                    0 0 0 0
+                    rgba(242,106,9,.18);
+
+            }
+
+            50%{
+
+                box-shadow:
+                    0 0 0 7px
+                    rgba(242,106,9,0);
+
+            }
+
+        }
+
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        main{
+
+            position:relative;
+
+            z-index:2;
+
+            flex:1;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            padding:
+
+                50px 6%
+                90px;
+
+        }
+
+        .content{
+
+            width:100%;
+
+            max-width:850px;
+
+            text-align:center;
+
+            display:flex;
+
+            flex-direction:column;
+
+            align-items:center;
+
+        }
+
+
+        /* =========================================================
+           SIMPLE WORKING INDICATOR
+        ========================================================= */
+
+        .working-indicator{
+
+            width:74px;
+
+            height:74px;
+
+            border-radius:50%;
+
+            position:relative;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            margin-bottom:35px;
+
+            border:
+
+                1px solid
+                rgba(15,35,57,.12);
+
+        }
+
+        .working-indicator::before{
+
+            content:"";
+
+            position:absolute;
+
+            inset:8px;
+
+            border-radius:50%;
+
+            border:
+
+                1px dashed
+                rgba(242,106,9,.45);
+
+            animation:
+
+                rotate 12s linear infinite;
+
+        }
+
+        .working-indicator::after{
+
+            content:"";
+
+            width:11px;
+
+            height:11px;
+
+            border-radius:50%;
+
+            background:var(--orange);
+
+            box-shadow:
+
+                0 0 0 8px
+                rgba(242,106,9,.07);
+
+        }
+
+        @keyframes rotate{
+
+            from{
+                transform:rotate(0deg);
+            }
+
+            to{
+                transform:rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================================================
+           EYEBROW
+        ========================================================= */
+
+        .eyebrow{
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            gap:12px;
+
+            margin-bottom:20px;
+
+            color:var(--orange);
+
+            font-size:10px;
+
+            font-weight:800;
+
+            letter-spacing:3px;
+
+            text-transform:uppercase;
+
+        }
+
+        .eyebrow::before,
+        .eyebrow::after{
+
+            content:"";
+
+            width:30px;
+
+            height:1px;
+
+            background:var(--orange);
+
+            opacity:.55;
+
+        }
+
+
+        /* =========================================================
+           HEADING
+        ========================================================= */
+
+        h1{
+
+            color:var(--navy);
+
+            font-size:
+
+                clamp(
+                    44px,
+                    6vw,
+                    76px
+                );
+
+            line-height:1;
+
+            letter-spacing:-3.5px;
+
+            font-weight:800;
+
+        }
+
+        h1 span{
+
+            color:var(--orange);
+
+        }
+
+
+        /* =========================================================
+           DESCRIPTION
+        ========================================================= */
+
+        .description{
+
+            max-width:670px;
+
+            margin:
+
+                30px auto 0;
+
+            color:var(--muted);
+
+            font-size:15px;
+
+            line-height:1.85;
+
+        }
+
+        .description strong{
+
+            color:var(--navy);
+
+            font-weight:700;
+
+        }
+
+
+        /* =========================================================
+           INFO
+        ========================================================= */
+
+        .info-card{
+
+            margin-top:38px;
+
+            display:flex;
+
+            align-items:center;
+
+            gap:13px;
+
+            padding:
+
+                16px 22px;
+
+            border:
+
+                1px solid
+                var(--border);
+
+            background:
+
+                rgba(255,255,255,.9);
+
+            box-shadow:
+
+                0 15px 45px
+                rgba(15,35,57,.055);
+
+        }
+
+        .info-line{
+
+            width:3px;
+
+            height:30px;
+
+            background:var(--orange);
+
+        }
+
+        .info-text{
+
+            text-align:left;
+
+            color:var(--muted);
+
+            font-size:11px;
+
+            line-height:1.5;
+
+        }
+
+        .info-text strong{
+
+            display:block;
+
+            color:var(--navy);
+
+            font-size:12px;
+
+            margin-bottom:2px;
+
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer{
+
+            position:relative;
+
+            z-index:5;
+
+            padding:
+
+                22px 6%;
+
+            border-top:
+
+                1px solid
+                rgba(15,35,57,.07);
+
+        }
+
+        .footer-inner{
+
+            max-width:1400px;
+
+            margin:auto;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:space-between;
+
+            gap:25px;
+
+        }
+
+        .footer-copy{
+
+            color:#8a96a2;
+
+            font-size:9px;
+
+            letter-spacing:.5px;
+
+        }
+
+        .footer-copy strong{
+
+            color:var(--navy);
+
+        }
+
+        .footer-line{
+
+            flex:1;
+
+            max-width:280px;
+
+            height:1px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(242,106,9,.28),
+                    transparent
+                );
+
+        }
+
+        .footer-label{
+
+            color:#9aa4ae;
+
+            font-size:8px;
+
+            letter-spacing:2px;
+
+            text-transform:uppercase;
+
+        }
+
+
+        /* =========================================================
+           ENTRY ANIMATION
+        ========================================================= */
+
+        .content > *{
+
+            opacity:0;
+
+            transform:translateY(18px);
+
+            animation:
+
+                reveal
+                .7s
+                cubic-bezier(.2,.7,.2,1)
+                forwards;
+
+        }
+
+        .working-indicator{
+            animation-delay:.05s;
+        }
+
+        .eyebrow{
+            animation-delay:.15s;
+        }
+
+        h1{
+            animation-delay:.25s;
+        }
+
+        .description{
+            animation-delay:.35s;
+        }
+
+        .info-card{
+            animation-delay:.45s;
+        }
+
+        @keyframes reveal{
+
+            to{
+
+                opacity:1;
+
+                transform:translateY(0);
+
+            }
+
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width:900px){
+
+            header{
+                padding:25px 5%;
+            }
+
+            main{
+                padding:45px 5% 70px;
+            }
+
+            h1{
+
+                font-size:
+
+                    clamp(
+                        44px,
+                        8vw,
+                        64px
+                    );
+
+            }
+
+            .description{
+                font-size:14px;
+            }
+
+            .footer-inner{
+                flex-wrap:wrap;
+            }
+
+            .footer-line{
+                display:none;
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width:600px){
+
+            header{
+
+                padding:
+                    20px;
+
+            }
+
+            .header-inner{
+
+                align-items:flex-start;
+
+            }
+
+            .brand-name{
+
+                font-size:14px;
+
+                letter-spacing:.5px;
+
+            }
+
+            .brand-tagline{
+
+                font-size:7px;
+
+                letter-spacing:1.3px;
+
+                margin-top:5px;
+
+            }
+
+            .status{
+
+                font-size:7px;
+
+                letter-spacing:.7px;
+
+                margin-top:5px;
+
+            }
+
+            .status-dot{
+
+                width:6px;
+
+                height:6px;
+
+            }
+
+            main{
+
+                padding:
+
+                    35px 20px
+                    55px;
+
+            }
+
+            .working-indicator{
+
+                width:64px;
+
+                height:64px;
+
+                margin-bottom:28px;
+
+            }
+
+            .eyebrow{
+
+                font-size:8px;
+
+                letter-spacing:2px;
+
+                gap:8px;
+
+                margin-bottom:17px;
+
+            }
+
+            .eyebrow::before,
+            .eyebrow::after{
+
+                width:19px;
+
+            }
+
+            h1{
+
+                font-size:40px;
+
+                letter-spacing:-2px;
+
+                line-height:1.03;
+
+            }
+
+            .description{
+
+                margin-top:25px;
+
+                font-size:13px;
+
+                line-height:1.75;
+
+            }
+
+            .info-card{
+
+                width:100%;
+
+                margin-top:29px;
+
+                padding:
+
+                    14px 15px;
+
+            }
+
+            .info-line{
+
+                height:27px;
+
+            }
+
+            .info-text{
+
+                font-size:10px;
+
+            }
+
+            .info-text strong{
+
+                font-size:11px;
+
+            }
+
+            footer{
+
+                padding:
+
+                    17px 20px;
+
+            }
+
+            .footer-inner{
+
+                justify-content:center;
+
+                text-align:center;
+
+            }
+
+            .footer-copy,
+            .footer-label{
+
+                font-size:7px;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           SMALL MOBILE
+        ========================================================= */
+
+        @media (max-width:380px){
+
+            .status{
+                display:none;
+            }
+
+            .brand-tagline{
+                display:none;
+            }
+
+            h1{
+                font-size:36px;
+            }
+
+            .description{
+                font-size:12.5px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- BACKGROUND -->
+
+    <div class="background-grid"></div>
+
+    <div class="decor decor-top"></div>
+
+    <div class="decor decor-bottom"></div>
+
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header>
+
+        <div class="header-inner">
+
+
+            <a
+                href="#"
+                class="brand"
+            >
+
+                <div class="brand-name">
+                    GRID STEEL DETAILING
+                </div>
+
+                <div class="brand-tagline">
+                    Connecting Steel With Precision
+                </div>
+
+            </a>
+
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                Work In Progress
+
+            </div>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+
+    <main>
+
+        <section class="content">
+
+
+            <!-- SIMPLE NATURAL INDICATOR -->
+
+            <div class="working-indicator"></div>
+
+
+
+            <!-- EYEBROW -->
+
+            <div class="eyebrow">
+
+                Page Under Development
+
+            </div>
+
+
+
+            <!-- HEADING -->
+
+            <h1>
+
+                Precision Takes
+                <br>
+
+                <span>Time To Build.</span>
+
+            </h1>
+
+
+
+            <!-- DESCRIPTION -->
+
+            <p class="description">
+
+                This page is currently being developed as part of our
+                <strong>Grid Steel Detailing</strong> website.
+
+                Our team is working on the details to ensure everything
+                meets the quality and precision we stand for.
+
+                <br><br>
+
+                <strong>
+                    Please visit the other available pages while we complete this one.
+                </strong>
+
+            </p>
+
+
+
+            <!-- INFO CARD -->
+
+            <div class="info-card">
+
+                <div class="info-line"></div>
+
+                <div class="info-text">
+
+                    <strong>
+                        Coming Live Soon
+                    </strong>
+
+                    This page will be available shortly.
+                    Thank you for your patience.
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+
+            <div class="footer-copy">
+
+                ©
+                <span id="year"></span>
+
+                <strong>
+                    Grid Steel Detailing
+                </strong>.
+
+                All Rights Reserved.
+
+            </div>
+
+
+            <div class="footer-line"></div>
+
+
+            <div class="footer-label">
+
+                Precision • Structure • Detail
+
+            </div>
+
+
+        </div>
+
+    </footer>
+
+
+</div>
+
+
+
+<script>
+
+    /* =========================================================
+       GRID STEEL DETAILING
+       TEMPORARY PAGE JS
+    ========================================================= */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function(){
+
+            const year =
+                document.getElementById("year");
+
+            if(year){
+
+                year.textContent =
+                    new Date().getFullYear();
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+</html>
